@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:extension_shaft"
+    },
+    "b": {
+      "item": "create:andesite_alloy"
+    },
+    "c": {
+      "item": "create:shaft"
+    }
+  },
+  "result": {
+    "item": "warium_create:converter_in",
+    "count": 1
+  }
+}

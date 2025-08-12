@@ -1,0 +1,17 @@
+{
+  "values": [
+    "warium_create:converter_out",
+	{
+      "id": "createdieselgenerators:diesel_engine",
+      "required": false
+    },
+	{
+      "id": "createdieselgenerators:large_diesel_engine",
+      "required": false
+    },
+	{
+      "id": "createdieselgenerators:huge_diesel_engine",
+      "required": false
+    }
+  ]
+}

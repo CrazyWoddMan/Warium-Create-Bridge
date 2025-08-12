@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "warium_create:block/converter_in"
+    },
+    "facing=east": {
+      "model": "warium_create:block/converter_in",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "warium_create:block/converter_in",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "warium_create:block/converter_in",
+      "y": 270
+    }
+  }
+}

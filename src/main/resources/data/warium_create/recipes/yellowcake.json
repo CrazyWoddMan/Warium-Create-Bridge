@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "create:blaze_cake_base"
+    },
+    {
+      "amount": 250,
+      "fluid": "warium_create:yellowcake_mixture",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "warium_create:yellowcake"
+    }
+  ]
+}

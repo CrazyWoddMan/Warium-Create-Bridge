@@ -1,0 +1,42 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+# issueTrackerURL = "https://github.com/CrazyWoddMan/Warium-Ponder/issues/"
+license="MIT"
+
+[[mods]]
+	modId="warium_create"
+	version="1.0.0"
+	displayName="Warium-Create Bridge"
+    # displayURL="https://www.curseforge.com/minecraft/mc-mods/warium-create"
+    logoFile = "icon.png"
+	authors="CrazyWoddMan" 
+	description='''A bridge between Warium and Create mechanics'''
+    mixins = "mixins.warium_ponder.json"
+
+[[dependencies.warium_create]]
+    modId="forge"
+    mandatory=true 
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.warium_create]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.warium_create]]
+    modId="crusty_chunks"
+    mandatory=true 
+    versionRange="[1.0.6,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.warium_create]]
+    modId="create"
+    mandatory=true 
+    versionRange="[0.5.1.j,)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,30 @@
+{
+  "parent": "crusty_chunks:uranium",
+  "display": {
+    "icon": {
+      "item": "warium_create:yellowcake"
+    },
+    "title": {
+      "translate": "advancement.warium_create.eat_yellowcake.title"
+    },
+    "description": {
+      "translate": "advancement.warium_create.eat_yellowcake.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "eat_yellowcake": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "warium_create:yellowcake"
+          ]
+        }
+      }
+    }
+  }
+}

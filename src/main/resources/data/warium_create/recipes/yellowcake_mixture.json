@@ -1,0 +1,22 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:uranium_neutral_dust"
+    },
+	{
+      "tag": "forge:dusts/sulfur"
+    },
+	{
+      "amount": 250,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "fluid": "warium_create:yellowcake_mixture"
+    }
+  ]
+}

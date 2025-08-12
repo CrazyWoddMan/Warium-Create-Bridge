@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+	"b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:compass"
+    },
+    "b": {
+      "item": "warium_create:converter_in"
+    }
+  },
+  "result": {
+    "item": "warium_create:converter_out",
+    "count": 1
+  }
+}

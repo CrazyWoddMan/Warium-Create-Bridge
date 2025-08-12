@@ -1,0 +1,53 @@
+{
+  "variants": {
+	"face=ceiling,facing=north": {
+      "model": "warium_create:block/converter_out",
+      "x": 180,
+	  "y": 180
+    },
+	"face=ceiling,facing=east": {
+      "model": "warium_create:block/converter_out",
+      "x": 180,
+	  "y": 270
+    },
+	"face=ceiling,facing=south": {
+      "model": "warium_create:block/converter_out",
+      "x": 180
+    },
+	"face=ceiling,facing=west": {
+      "model": "warium_create:block/converter_out",
+      "x": 180,
+	  "y": 90
+    },
+    "face=floor,facing=north": {
+      "model": "warium_create:block/converter_out"
+    },
+    "face=floor,facing=east": {
+      "model": "warium_create:block/converter_out",
+      "y": 90
+    },
+    "face=floor,facing=south": {
+      "model": "warium_create:block/converter_out",
+      "y": 180
+    },
+    "face=floor,facing=west": {
+      "model": "warium_create:block/converter_out",
+      "y": 270
+    },
+	"face=wall,facing=north": {
+      "model": "warium_create:block/converter_out_wall"
+    },
+    "face=wall,facing=east": {
+      "model": "warium_create:block/converter_out_wall",
+      "y": 90
+    },
+    "face=wall,facing=south": {
+      "model": "warium_create:block/converter_out_wall",
+      "y": 180
+    },
+    "face=wall,facing=west": {
+      "model": "warium_create:block/converter_out_wall",
+      "y": 270
+    }
+  }
+}

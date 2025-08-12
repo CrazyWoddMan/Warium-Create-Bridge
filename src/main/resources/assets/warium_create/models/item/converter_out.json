@@ -1,0 +1,113 @@
+{
+	"format_version": "1.9.0",
+	"credit": "by CrazyWoddMan",
+	"parent": "block/block",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "crusty_chunks:block/aluminumcasingtop",
+		"1": "crusty_chunks:block/aluminumcasingside",
+		"2": "crusty_chunks:block/kineticpoweroutput",
+		"3": "create:block/gauge",
+		"4": "warium_create:block/converter_side",
+		"5": "create:block/axis_top",
+		"6": "warium_create:block/converter_out_back",
+		"particle": "create:block/gauge"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"east": {"uv": [12, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 8, 8], "texture": "#6"},
+				"west": {"uv": [0, 0, 4, 16], "texture": "#1"},
+				"up": {"uv": [0, 12, 16, 16], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 4], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"name": "GuageBase",
+			"from": [1, 0, 4],
+			"to": [15, 2, 16],
+			"faces": {
+				"east": {"uv": [0, 9, 6, 10], "texture": "#3"},
+				"south": {"uv": [0.5, 9, 7.5, 10], "texture": "#3"},
+				"west": {"uv": [2, 9, 8, 10], "texture": "#3"},
+				"up": {"uv": [2, 0, 8, 7], "rotation": 90, "texture": "#3"},
+				"down": {"uv": [0, 0, 6, 7], "rotation": 90, "texture": "#3"}
+			}
+		},
+		{
+			"name": "GaugeBody",
+			"from": [2, 2, 4],
+			"to": [14, 14, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [4, 4, 16, 15], "rotation": 270, "texture": "#4"},
+				"south": {"uv": [0, 10, 6, 16], "texture": "#6"},
+				"west": {"uv": [0, 5, 12, 16], "rotation": 270, "texture": "#4"},
+				"up": {"uv": [2, 5, 14, 16], "texture": "#4"}
+			}
+		},
+		{
+			"name": "GuageMetalBack",
+			"from": [3, 14, 4],
+			"to": [13, 16, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 9]},
+			"faces": {
+				"east": {"uv": [13, 5, 14, 10], "rotation": 90, "texture": "#3"},
+				"south": {"uv": [9, 5, 10, 10], "rotation": 270, "texture": "#3"},
+				"west": {"uv": [13, 5, 14, 10], "rotation": 90, "texture": "#3"},
+				"up": {"uv": [9, 5, 14, 10], "texture": "#3"}
+			}
+		},
+		{
+			"name": "GaugeButton",
+			"from": [9.7, 15.5, 10.7],
+			"to": [10.8, 16.5, 11.8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 9]},
+			"faces": {
+				"north": {"uv": [0, 9.5, 0.5, 10], "rotation": 270, "texture": "#3"},
+				"east": {"uv": [0, 9.5, 0.5, 10], "rotation": 90, "texture": "#3"},
+				"south": {"uv": [0, 9.5, 0.5, 10], "rotation": 270, "texture": "#3"},
+				"west": {"uv": [0, 9.5, 0.5, 10], "rotation": 270, "texture": "#3"},
+				"up": {"uv": [0, 9.5, 0.5, 10], "texture": "#3"}
+			}
+		},
+		{
+			"name": "Gauge",
+			"from": [4, 16.075, 5],
+			"to": [12, 16.075, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 9]},
+			"faces": {
+				"up": {"uv": [8, 0, 12, 4], "texture": "#3"}
+			}
+		},
+		{
+			"from": [6, 6, 15],
+			"to": [10, 10, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 15]},
+			"faces": {
+				"east": {"uv": [9, 6, 10, 10], "texture": "#5"},
+				"south": {"uv": [6, 6, 10, 10], "texture": "#5"},
+				"west": {"uv": [6, 6, 7, 10], "texture": "#5"},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#5"},
+				"down": {"uv": [6, 9, 10, 10], "texture": "#5"}
+			}
+		},
+		{
+			"name": "GaugeDial",
+			"from": [9.75, 15.75, 6.25],
+			"to": [10.75, 16.45, 11.25],
+			"rotation": {"angle": 0, "axis": "z", "origin": [10.25, 16.1, 8.75]},
+			"faces": {
+				"north": {"uv": [15.5, 4, 16, 4.5], "rotation": 270, "texture": "#3"},
+				"east": {"uv": [16, 4, 13.5, 4.5], "rotation": 180, "texture": "#3"},
+				"west": {"uv": [13.5, 4, 16, 4.5], "rotation": 180, "texture": "#3"},
+				"up": {"uv": [16, 4, 13.5, 4.5], "rotation": 90, "texture": "#3"}
+			}
+		}
+	]
+}
