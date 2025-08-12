@@ -1,14 +1,15 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-# issueTrackerURL = "https://github.com/CrazyWoddMan/Warium-Ponder/issues/"
+issueTrackerURL = "https://github.com/CrazyWoddMan/Warium-Create-Bridge/issues/"
 license="MIT"
 
 [[mods]]
 	modId="warium_create"
 	version="1.0.0"
 	displayName="Warium-Create Bridge"
-    # displayURL="https://www.curseforge.com/minecraft/mc-mods/warium-create"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/warium-create"
     logoFile = "icon.png"
+    credits="MelodicCougar7 for recipes and Warium Discord community for ideas"
 	authors="CrazyWoddMan" 
 	description='''A bridge between Warium and Create mechanics'''
     mixins = "mixins.warium_ponder.json"
