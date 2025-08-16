@@ -1,6 +1,7 @@
 package crazywoddman.warium_create.block;
 
 import crazywoddman.warium_create.WariumCreate;
+import crazywoddman.warium_create.block.converter.*;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 public class WariumCreateBlockEntities {
@@ -16,6 +17,11 @@ public class WariumCreateBlockEntities {
         .instance(() -> ConverterInInstance::new, false)
         .validBlocks(WariumCreateBlocks.CONVERTER_IN)
         .renderer(() -> ConverterInRenderer::new)
+        .register();
+        
+    public static final BlockEntityEntry<ControllableTriggerBlockEntity> CONTROLLABLE_TRIGGER_BE = WariumCreate.REGISTRATE
+        .blockEntity("controllable_trigger", ControllableTriggerBlockEntity::new)
+        .validBlocks(WariumCreateBlocks.CONTROLLABLE_TRIGGER)
         .register();
 
     public static void register() {}
