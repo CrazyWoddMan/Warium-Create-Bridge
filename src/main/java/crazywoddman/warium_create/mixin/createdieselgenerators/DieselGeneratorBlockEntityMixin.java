@@ -29,11 +29,10 @@ public class DieselGeneratorBlockEntityMixin {
             BlockEntity controlNode = self.getLevel().getBlockEntity(controlPos);
             if (controlNode != null && controlNode.getPersistentData().contains("Throttle")) {
                 throttle = controlNode.getPersistentData().getDouble("Throttle");
+                self.getLevel().setBlock(self.getBlockPos(),
+                    self.getBlockState().setValue(DieselGeneratorBlock.POWERED, throttle <= 0), 3);
+                self.updateGeneratedRotation();
             }
-            self.getLevel().setBlock(self.getBlockPos(),
-                self.getBlockState().setValue(DieselGeneratorBlock.POWERED, throttle <= 0), 3);
-            self.updateGeneratedRotation();
-
         }
     }
 }

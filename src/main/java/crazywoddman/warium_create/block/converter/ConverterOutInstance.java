@@ -1,4 +1,4 @@
-package crazywoddman.warium_create.block;
+package crazywoddman.warium_create.block.converter;
 
 import com.jozufozu.flywheel.api.Instancer;
 import com.jozufozu.flywheel.api.MaterialManager;
@@ -17,7 +17,7 @@ public class ConverterOutInstance extends KineticBlockEntityInstance<ConverterOu
 
     protected final RotatingData shaft;
     protected final ModelData dial, head;
-    protected final ModelData dial2, head2; // Вторая панель
+    protected final ModelData dial2, head2;
     protected final PoseStack ms;
     final Direction facing, opposite;
     final AttachFace face;

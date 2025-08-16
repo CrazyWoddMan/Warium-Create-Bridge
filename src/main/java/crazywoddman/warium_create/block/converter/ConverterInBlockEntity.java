@@ -1,4 +1,4 @@
-package crazywoddman.warium_create.block;
+package crazywoddman.warium_create.block.converter;
 
 import java.util.List;
 
@@ -75,12 +75,12 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
         Direction facing = getBlockState().getValue(ConverterIn.FACING);
         BlockPos backPos = getBlockPos().relative(facing.getOpposite());
         BlockState backState = level.getBlockState(backPos);
-        BlockEntity backEntity = level.getBlockEntity(backPos);
+        BlockEntity blockEntity = level.getBlockEntity(backPos);
 
         double prevKP = this.getPersistentData().getDouble("KineticPower");
         double newKP = 0.0;
 
-        if (backEntity != null) {
+        if (blockEntity != null) {
             var blockKey = backState.getBlock().builtInRegistryHolder().key().location();
             boolean isWarium = blockKey != null && blockKey.getNamespace().equals("crusty_chunks");
             if (isWarium) {
@@ -94,7 +94,7 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
                 if (facingProp != null) {
                     Direction wariumFacing = backState.getValue(facingProp);
                     if (wariumFacing == facing) {
-                        newKP = backEntity.getPersistentData().getDouble("KineticPower");
+                        newKP = blockEntity.getPersistentData().getDouble("KineticPower");
                     }
                 }
             }

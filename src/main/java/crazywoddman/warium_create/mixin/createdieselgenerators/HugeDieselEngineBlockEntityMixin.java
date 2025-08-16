@@ -2,7 +2,6 @@ package crazywoddman.warium_create.mixin.createdieselgenerators;
 
 import com.jesz.createdieselgenerators.blocks.DieselGeneratorBlock;
 import com.jesz.createdieselgenerators.blocks.entity.HugeDieselEngineBlockEntity;
-import com.jesz.createdieselgenerators.blocks.entity.LargeDieselGeneratorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,11 +29,9 @@ public class HugeDieselEngineBlockEntityMixin {
             BlockEntity controlNode = self.getLevel().getBlockEntity(controlPos);
             if (controlNode != null && controlNode.getPersistentData().contains("Throttle")) {
                 throttle = controlNode.getPersistentData().getDouble("Throttle");
+                self.getLevel().setBlock(self.getBlockPos(),
+                    self.getBlockState().setValue(DieselGeneratorBlock.POWERED, throttle <= 0), 3);
             }
-            self.getLevel().setBlock(self.getBlockPos(),
-                self.getBlockState().setValue(DieselGeneratorBlock.POWERED, throttle <= 0), 3);
-            // self.updateGeneratedRotation();
-
         }
     }
 }

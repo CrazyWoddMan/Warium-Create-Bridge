@@ -1,4 +1,4 @@
-package crazywoddman.warium_create.block;
+package crazywoddman.warium_create.block.converter;
 
 import crazywoddman.warium_create.Config;
 import com.simibubi.create.content.kinetics.KineticNetwork;

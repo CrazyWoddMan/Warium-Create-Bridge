@@ -1,4 +1,4 @@
-package crazywoddman.warium_create.block;
+package crazywoddman.warium_create.block.converter;
 
 import com.jozufozu.flywheel.backend.Backend;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -31,7 +31,7 @@ public abstract class BreederReactorInterfaceBlockEntityMixin implements IHaveGo
             for (int i = 0; i < container.getContainerSize(); i++) {
                 ItemStack stack = container.getItem(i);
                 if (!stack.isEmpty()) {
-                    validItem = stack.is(ItemTags.create(new ResourceLocation("crusty_chunks", "reactor_acceptable")));
+                    validItem = stack.is(ItemTags.create(new ResourceLocation("warium_create", "reactor_acceptable")));
                     break;
                 }
             }

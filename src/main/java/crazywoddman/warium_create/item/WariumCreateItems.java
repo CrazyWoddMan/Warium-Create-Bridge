@@ -1,6 +1,7 @@
 package crazywoddman.warium_create.item;
 
 import crazywoddman.warium_create.WariumCreate;
+
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.food.FoodProperties;
 

@@ -1,4 +1,4 @@
-package crazywoddman.warium_create.block;
+package crazywoddman.warium_create.block.converter;
 
 import com.jozufozu.flywheel.api.MaterialManager;
 import com.simibubi.create.AllPartialModels;

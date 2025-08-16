@@ -28,7 +28,7 @@ public abstract class CentrifugeCoreBlockEntityMixin implements IHaveGoggleInfor
             for (int i = 0; i < container.getContainerSize(); i++) {
                 ItemStack stack = container.getItem(i);
                 if (!stack.isEmpty()) {
-                    validItem = stack.is(ItemTags.create(new ResourceLocation("crusty_chunks", "enrichable")));
+                    validItem = stack.is(ItemTags.create(new ResourceLocation("warium_create", "enrichable")));
                     break;
                 }
             }
