@@ -16,7 +16,10 @@ public class CreativeTabs {
             event.accept(WariumCreateBlocks.CONVERTER_IN.asStack());
             event.accept(WariumCreateBlocks.CONVERTER_OUT.asStack());
         }
-        if (event.getTabKey().location().equals(new ResourceLocation("create", "base"))) {
+        if (event.getTabKey().location().equals(new ResourceLocation("valkyrien_warium", "warium_vs"))) {
+            event.accept(WariumCreateBlocks.CONTROLLABLE_TRIGGER.asStack());
+        }
+        if (event.getTabKey().location().equals(new ResourceLocation("valkyrien_warium", "crusty_production"))) {
             event.accept(WariumCreateItems.YELLOWCAKE.get());
         }
     }
