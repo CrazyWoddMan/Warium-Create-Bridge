@@ -1,7 +1,5 @@
 package crazywoddman.warium_create;
 
-import java.util.Arrays;
-
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
@@ -100,6 +98,23 @@ public class ConfigClient {
                                 .setMax(256)
                                 .setSaveConsumer(newValue -> {
                                     Config.SERVER.defaultSpeed.set(newValue);
+                                    Config.SERVER_SPEC.save();
+                                })
+                                .build()
+                        );
+                        category.addEntry(
+                            entryBuilder
+                                .startBooleanToggle(
+                                    Component.literal("TFMG engines speed control"),
+                                    Config.SERVER.TFMGspeedControl.get()
+                                )
+                                .setTooltip(
+                                    Component.literal("Whether TFMG engines connected to Vehicle Control Node should change their speed from throttle value"),
+                                    Component.literal("If set to No, Vehicle Control Node will only turn engines on/off (max speed when turned on)")
+                                )
+                                .setDefaultValue(true)
+                                .setSaveConsumer(newValue -> {
+                                    Config.SERVER.TFMGspeedControl.set(newValue);
                                     Config.SERVER_SPEC.save();
                                 })
                                 .build()

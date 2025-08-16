@@ -1,6 +1,5 @@
 package crazywoddman.warium_create;
 
-import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock.HeatLevel;
 
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -19,6 +18,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue energyToFErate;
         public final ForgeConfigSpec.DoubleValue defaultStress;
         public final ForgeConfigSpec.IntValue defaultSpeed;
+        public final ForgeConfigSpec.BooleanValue TFMGspeedControl;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> fireboxHeat;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> oilFireboxHeat;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> electricFireboxHeat;
@@ -40,9 +40,13 @@ public class Config {
                 .comment("Light Combustion Engine Speed equivalent")
                 .comment("Note: this will affect whole conversion process, Light Combustion Engine is just for referernce")
                 .defineInRange("defaultSpeed", 100, 1, 256);
+            TFMGspeedControl = builder
+                .comment("Whether TFMG engines connected to Vehicle Control Node should change their speed from throttle value")
+                .comment("If set to false, Vehicle Control Node will only turn engines on/off (max speed when turned on)")
+                .define("TFMGspeedControl", true);
             fireboxHeat = builder
                 .comment("Blaze Burner type heat level for fireboxes")
-                .comment("Allowed values are KINELED or SEETHING")
+                .comment("Allowed values are KINDLED or SEETHING")
                 .define("fireboxHeatLevel", HeatLevel.KINDLED, value ->
                     value instanceof HeatLevel &&
                     (value.equals(HeatLevel.KINDLED) || value.equals(HeatLevel.SEETHING))
