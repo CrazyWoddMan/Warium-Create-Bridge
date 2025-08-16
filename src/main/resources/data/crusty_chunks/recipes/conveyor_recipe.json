@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:ingots/steel"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:conveyor",
+    "count": 4
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "ccc",
+    "dbd"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:cable"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:power_cell"
+    },
+    "d": {
+      "item": "crusty_chunks:bent_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:energy_battery",
+    "count": 1
+  }
+}

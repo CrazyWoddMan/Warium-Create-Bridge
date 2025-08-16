@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "b a",
+    "cb "
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "b": {
+      "item": "crusty_chunks:cut_component"
+    },
+    "c": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:lmg_magazine",
+    "count": 1
+  }
+}

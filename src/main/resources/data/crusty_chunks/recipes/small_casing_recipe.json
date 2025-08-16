@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:cutters"
+    },
+    {
+      "tag": "forge:plates/brass"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:small_casing",
+    "count": 16
+  }
+}

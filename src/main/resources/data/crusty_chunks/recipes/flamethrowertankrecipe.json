@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "e e"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "b": {
+      "item": "crusty_chunks:bored_component"
+    },
+    "c": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "d": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "e": {
+      "tag": "forge:plates/aluminum"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:flame_thrower_tank_chestplate",
+    "count": 1
+  }
+}

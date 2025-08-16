@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    "ded"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:bullet_resistant_helmet_helmet"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_component"
+    },
+    "c": {
+      "item": "crusty_chunks:tech_component"
+    },
+    "d": {
+      "tag": "warium_create:electronic_gem"
+    },
+    "e": {
+      "item": "crusty_chunks:power_cell"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:nvd_helmet_helmet",
+    "count": 1
+  }
+}

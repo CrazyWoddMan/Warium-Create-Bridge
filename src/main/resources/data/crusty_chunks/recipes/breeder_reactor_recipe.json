@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "ded"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "c": {
+      "item": "crusty_chunks:reactioncomponent"
+    },
+    "d": {
+      "tag": "forge:blocks/aluminum"
+    },
+    "e": {
+      "item": "crusty_chunks:shielding_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:breeder_reactor_interface",
+    "count": 1
+  }
+}

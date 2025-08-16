@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    "ada"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "c": {
+      "item": "crusty_chunks:uranium_enriched_ingot"
+    },
+    "d": {
+      "item": "crusty_chunks:neutron_reflector"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:fuel_rod",
+    "count": 16
+  }
+}

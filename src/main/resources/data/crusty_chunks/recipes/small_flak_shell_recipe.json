@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a  ",
+    " b ",
+    "  c"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:small_flak_projectile"
+    },
+    "b": {
+      "item": "crusty_chunks:propellent"
+    },
+    "c": {
+      "tag": "forge:plates/brass"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:small_flak_shell",
+    "count": 1
+  }
+}

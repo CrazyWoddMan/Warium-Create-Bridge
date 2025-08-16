@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab ",
+    "cde",
+    " cf"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_component"
+    },
+    "c": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "d": {
+      "item": "crusty_chunks:automatic_rifle_receiver"
+    },
+    "e": {
+      "tag": "forge:plates/steel"
+    },
+    "f": {
+      "item": "crusty_chunks:steel_spring"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:mg_receiver",
+    "count": 1
+  }
+}

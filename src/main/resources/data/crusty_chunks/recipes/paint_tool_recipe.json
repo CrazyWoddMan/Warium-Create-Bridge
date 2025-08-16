@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a  ",
+    "bcd",
+    "ebf"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "b": {
+      "tag": "forge:plates/aluminum"
+    },
+    "c": {
+      "item": "crusty_chunks:electric_motor"
+    },
+    "d": {
+      "item": "minecraft:glass_bottle"
+    },
+    "e": {
+      "item": "crusty_chunks:firing_mechanism"
+    },
+    "f": {
+      "item": "crusty_chunks:steel_spring"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:paint_tool",
+    "count": 1
+  }
+}

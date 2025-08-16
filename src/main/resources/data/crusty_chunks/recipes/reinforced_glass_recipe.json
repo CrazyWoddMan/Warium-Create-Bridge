@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    },
+    "b": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:reinforced_glass",
+    "count": 1
+  }
+}

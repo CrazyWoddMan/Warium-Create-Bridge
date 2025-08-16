@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  a",
+    "bcb",
+    "  d"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:gunpowder"
+    },
+    "b": {
+      "item": "minecraft:paper"
+    },
+    "c": {
+      "item": "crusty_chunks:smoke_agent"
+    },
+    "d": {
+      "tag": "forge:plates/brass"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:flare_charge",
+    "count": 8
+  }
+}

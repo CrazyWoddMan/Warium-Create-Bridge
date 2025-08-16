@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:ordinance_heavy_warhead"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:steel_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:torpedo_warhead",
+    "count": 1
+  }
+}

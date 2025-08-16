@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "c c",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:large_volatile_pile"
+    },
+    "c": {
+      "item": "crusty_chunks:bent_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_inline_warhead",
+    "count": 1
+  }
+}

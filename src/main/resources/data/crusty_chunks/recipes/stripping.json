@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:cutters"
+    },
+    {
+      "tag": "forge:plates/copper"
+    }
+  ],
+  "result": {
+    "tag": "forge:wires/copper",
+    "count": 1
+  }
+}

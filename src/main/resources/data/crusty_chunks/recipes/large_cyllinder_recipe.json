@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "efe"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "c": {
+      "tag": "forge:inogts/steel"
+    },
+    "d": {
+      "item": "crusty_chunks:engine_component"
+    },
+    "e": {
+      "item": "crusty_chunks:brass_fitting"
+    },
+    "f": {
+      "item": "crusty_chunks:steel_cylinder"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:engine_cyllinder",
+    "count": 1
+  }
+}

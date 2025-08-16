@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    },
+    "b": {
+      "item": "crusty_chunks:autocannon_barrel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:aluminum_ac_barrel",
+    "count": 1
+  }
+}

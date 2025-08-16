@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:cable"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:energy_distribution_node",
+    "count": 2
+  }
+}

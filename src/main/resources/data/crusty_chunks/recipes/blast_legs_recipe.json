@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "c c",
+    "c c"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:leather"
+    },
+    "b": {
+      "item": "minecraft:leather_leggings"
+    },
+    "c": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:blast_armor_leggings",
+    "count": 1
+  }
+}

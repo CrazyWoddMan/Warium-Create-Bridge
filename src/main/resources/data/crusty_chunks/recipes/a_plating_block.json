@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:aluminum_plating",
+    "count": 4
+  }
+}

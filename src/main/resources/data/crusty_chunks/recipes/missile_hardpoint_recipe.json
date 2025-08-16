@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_component"
+    },
+    "b": {
+      "item": "minecraft:redstone"
+    },
+    "c": {
+      "tag": "forge:plates/aluminum"
+    },
+    "d": {
+      "item": "crusty_chunks:firing_pin"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:empty_missile_hardpoint",
+    "count": 1
+  }
+}

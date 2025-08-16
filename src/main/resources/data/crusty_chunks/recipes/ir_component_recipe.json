@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bde",
+    "cef"
+  ],
+  "key": {
+    "a": {
+      "tag": "warium_create:electronic_gem"
+    },
+    "b": {
+      "tag": "forge:plates/copper"
+    },
+    "c": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "d": {
+      "item": "crusty_chunks:tech_component"
+    },
+    "e": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "f": {
+      "item": "crusty_chunks:copper_coil"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ir_component",
+    "count": 1
+  }
+}

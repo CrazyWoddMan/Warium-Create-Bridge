@@ -1,0 +1,31 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "crusty_chunks"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "STS",
+          "FNF",
+          "STS"
+        ],
+        "key": {
+          "T": { "item": "crusty_chunks:steel_tube" },
+          "S": { "tag": "forge:ingots/steel" },
+          "N": { "tag": "forge:blocks/nickel" },
+          "F": { "item": "crusty_chunks:blast_funnel"}
+        },
+        "result": {
+          "item": "crusty_chunks:electric_firebox",
+          "count": 1
+        }
+      }
+    }
+  ]
+}

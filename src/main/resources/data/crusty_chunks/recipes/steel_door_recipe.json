@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "ab",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:steel_door",
+    "count": 1
+  }
+}

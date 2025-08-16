@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "ccc",
+    "ada"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    },
+    "b": {
+      "item": "crusty_chunks:cut_component"
+    },
+    "c": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "d": {
+      "item": "crusty_chunks:firing_mechanism"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:countermeasure_dispenser",
+    "count": 1
+  }
+}

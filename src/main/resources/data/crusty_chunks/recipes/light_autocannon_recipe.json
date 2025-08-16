@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab ",
+    "bcd",
+    " de"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:autocannon_barrel"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:mg_receiver"
+    },
+    "d": {
+      "item": "crusty_chunks:steel_spring"
+    },
+    "e": {
+      "tag": "forge:ingots/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:light_autocannon",
+    "count": 1
+  }
+}

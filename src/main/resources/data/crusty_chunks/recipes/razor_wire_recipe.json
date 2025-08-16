@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:wires/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:cut_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:razor_wire",
+    "count": 32
+  }
+}

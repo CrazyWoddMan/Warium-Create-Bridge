@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    "dbe"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "b": {
+      "tag": "forge:plates/aluminum"
+    },
+    "c": {
+      "item": "crusty_chunks:firing_mechanism"
+    },
+    "d": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "e": {
+      "item": "crusty_chunks:steel_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:flare_pistol",
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    "ada"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    },
+    "b": {
+      "item": "minecraft:tinted_glass"
+    },
+    "c": {
+      "item": "crusty_chunks:brass_fitting"
+    },
+    "d": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:gas_mask_helmet",
+    "count": 1
+  }
+}

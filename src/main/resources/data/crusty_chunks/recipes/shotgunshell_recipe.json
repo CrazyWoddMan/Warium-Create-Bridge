@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:nuggets/lead"
+    },
+    {
+      "tag": "forge:nuggets/lead"
+    },
+    {
+      "tag": "forge:nuggets/lead"
+    },
+    {
+      "item": "crusty_chunks:propellent"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:shotgun_shell",
+    "count": 3
+  }
+}

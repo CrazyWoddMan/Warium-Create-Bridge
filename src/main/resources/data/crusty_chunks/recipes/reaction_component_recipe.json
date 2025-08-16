@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bcb",
+    "dbd"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "b": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "c": {
+      "item": "crusty_chunks:uranium_neural_ingot"
+    },
+    "d": {
+      "tag": "forge:blocks/nickel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:reactioncomponent",
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    "ada"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_ingot"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:ordinance_heavy_warhead"
+    },
+    "d": {
+      "item": "crusty_chunks:steel_tube"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_kinetic_head",
+    "count": 1
+  }
+}

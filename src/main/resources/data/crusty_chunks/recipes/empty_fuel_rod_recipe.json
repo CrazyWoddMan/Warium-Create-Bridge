@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bcb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "c": {
+      "item": "crusty_chunks:reactioncomponent"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:empty_fuel_rods",
+    "count": 1
+  }
+}

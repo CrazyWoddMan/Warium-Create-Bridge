@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bdb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:cut_component"
+    },
+    "c": {
+      "item": "crusty_chunks:electric_motor"
+    },
+    "d": {
+      "item": "crusty_chunks:machine_gun_box"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:autocannon_drum",
+    "count": 1
+  }
+}

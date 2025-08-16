@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdb",
+    "efe"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/copper"
+    },
+    "b": {
+      "tag": "forge:wires/copper"
+    },
+    "c": {
+      "item": "minecraft:repeater"
+    },
+    "d": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "e": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "f": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:tech_component",
+    "count": 1
+  }
+}

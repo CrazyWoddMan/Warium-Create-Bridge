@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bde",
+    "cef"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:battle_cannon_barrel"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "tag": "forge:blocks/steel"
+    },
+    "d": {
+      "item": "crusty_chunks:firing_pin"
+    },
+    "e": {
+      "item": "crusty_chunks:steel_spring"
+    },
+    "f": {
+      "item": "crusty_chunks:steel_gear"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:battle_cannon_breech",
+    "count": 1
+  }
+}

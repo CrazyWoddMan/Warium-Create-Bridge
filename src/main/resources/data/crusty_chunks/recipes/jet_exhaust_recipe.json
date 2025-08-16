@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aab",
+    " cd",
+    "aab"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "tag": "forge:plates/aluminum"
+    },
+    "c": {
+      "item": "crusty_chunks:turbine_rotor"
+    },
+    "d": {
+      "item": "crusty_chunks:steel_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:jet_exhaust",
+    "count": 1
+  }
+}

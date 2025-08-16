@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    "bdb"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:impact_fuze"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:propellent"
+    },
+    "d": {
+      "tag": "forge:ingots/beryllium"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_fission_initiator_head",
+    "count": 1
+  }
+}

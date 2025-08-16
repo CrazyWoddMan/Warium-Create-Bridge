@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "cbc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:leather"
+    },
+    "b": {
+      "item": "crusty_chunks:reinforced_glass"
+    },
+    "c": {
+      "tag": "forge:plates/steel"
+    },
+    "d": {
+      "item": "crusty_chunks:bullet_resistant_helmet_helmet"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:blast_armor_helmet",
+    "count": 1
+  }
+}

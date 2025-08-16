@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_cylinder"
+    },
+    "b": {
+      "tag": "forge:plates/copper"
+    },
+    "c": {
+      "tag": "forge:dusts/redstone"
+    },
+    "d": {
+      "tag": "forge:gunpowder"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:shaped_charge_fuze",
+    "count": 1
+  }
+}

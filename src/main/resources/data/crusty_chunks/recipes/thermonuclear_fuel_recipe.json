@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "ccc",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:uranium_enriched_ingot"
+    },
+    "b": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "c": {
+      "item": "crusty_chunks:lithium_deuteride"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:thermo_nuclear_fuel",
+    "count": 1
+  }
+}

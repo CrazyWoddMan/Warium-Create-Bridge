@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bcb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "c": {
+      "item": "crusty_chunks:advanced_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:control_rod",
+    "count": 1
+  }
+}

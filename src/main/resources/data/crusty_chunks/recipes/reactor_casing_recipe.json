@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "ccc",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:ingots/beryllium"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:reenforced_concrete"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:reactor_casing",
+    "count": 1
+  }
+}

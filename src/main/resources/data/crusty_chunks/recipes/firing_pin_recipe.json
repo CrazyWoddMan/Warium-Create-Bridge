@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a ",
+    " b",
+    " c"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:wires/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_spring"
+    },
+    "c": {
+      "item": "crusty_chunks:cast_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:firing_pin",
+    "count": 1
+  }
+}

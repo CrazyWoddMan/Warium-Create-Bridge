@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:wires/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:wire_fence",
+    "count": 64
+  }
+}

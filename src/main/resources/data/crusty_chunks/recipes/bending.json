@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:hammer"
+    },
+    {
+      "tag": "forge:plates/steel"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:bent_component",
+    "count": 1
+  }
+}

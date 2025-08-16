@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcd",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:artillery_barrel"
+    },
+    "c": {
+      "item": "crusty_chunks:conveyor_lift"
+    },
+    "d": {
+      "item": "crusty_chunks:electric_motor"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:artillery_charge_loader",
+    "count": 1
+  }
+}

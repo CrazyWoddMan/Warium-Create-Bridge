@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a ",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:steel_plating_stairs",
+    "count": 4
+  }
+}

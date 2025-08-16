@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:steel_optic",
+    "count": 1
+  }
+}

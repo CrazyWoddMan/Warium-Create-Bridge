@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "c c"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "b": {
+      "item": "crusty_chunks:cluster_of_bombs"
+    },
+    "c": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_cluster_warhead",
+    "count": 1
+  }
+}

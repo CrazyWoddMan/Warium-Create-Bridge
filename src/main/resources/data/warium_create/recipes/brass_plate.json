@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:brass_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "crusty_chunks:brass_plate"
+    }
+  ]
+} 

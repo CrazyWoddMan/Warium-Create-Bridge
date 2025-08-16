@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab ",
+    "cdb",
+    " ef"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:wood_component"
+    },
+    "d": {
+      "item": "crusty_chunks:steel_cylinder"
+    },
+    "e": {
+      "item": "crusty_chunks:firing_mechanism"
+    },
+    "f": {
+      "item": "crusty_chunks:small_engine"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:hand_drill",
+    "count": 1
+  }
+}

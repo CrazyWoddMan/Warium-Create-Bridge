@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "def"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:wires/steel"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_component"
+    },
+    "c": {
+      "item": "crusty_chunks:bored_component"
+    },
+    "d": {
+      "item": "crusty_chunks:electric_motor"
+    },
+    "e": {
+      "item": "crusty_chunks:copper_coil"
+    },
+    "f": {
+      "tag": "forge:buckets/oil"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:advanced_component",
+    "count": 2
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab",
+    "bc"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:bored_component"
+    },
+    "b": {
+      "tag": "forge:wires/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:cast_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:combustion_cylinder",
+    "count": 1
+  }
+}

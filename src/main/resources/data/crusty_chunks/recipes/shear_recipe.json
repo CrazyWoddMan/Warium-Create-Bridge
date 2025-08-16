@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "efe"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_spring"
+    },
+    "b": {
+      "item": "crusty_chunks:electric_motor"
+    },
+    "c": {
+      "item": "crusty_chunks:steel_ingot"
+    },
+    "d": {
+      "item": "crusty_chunks:press"
+    },
+    "e": {
+      "item": "crusty_chunks:cast_component"
+    },
+    "f": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:cutter",
+    "count": 1
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    "ded"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:blast_furnace_brick"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "c": {
+      "item": "crusty_chunks:firebox"
+    },
+    "d": {
+      "tag": "forge:plates/steel"
+    },
+    "e": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:oil_firebox",
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:blocks/lead"
+    },
+    "b": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "c": {
+      "tag": "forge:ingots/lithium"
+    },
+    "d": {
+      "item": "crusty_chunks:fission_bomb"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:fusion_bomb",
+    "count": 1
+  }
+}

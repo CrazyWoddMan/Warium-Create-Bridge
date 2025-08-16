@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "minecraft:leather_helmet"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:bullet_resistant_helmet_helmet",
+    "count": 1
+  }
+}

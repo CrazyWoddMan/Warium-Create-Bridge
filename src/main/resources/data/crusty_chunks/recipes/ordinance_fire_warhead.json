@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    "dcd"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:impact_fuze"
+    },
+    "b": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "c": {
+      "item": "crusty_chunks:fire_agent"
+    },
+    "d": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_incendiary_warhead",
+    "count": 1
+  }
+}

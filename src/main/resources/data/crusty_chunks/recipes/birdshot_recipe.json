@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/lead"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    },
+    {
+      "item": "crusty_chunks:propellent"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    },
+    {
+      "item": "crusty_chunks:shotgun_casing"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:bird_shot",
+    "count": 5
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/sulfur"
+    },
+    {
+      "tag": "forge:dusts/sulfur"
+    },
+    {
+      "item": "crusty_chunks:smoke_agent"
+    },
+    {
+      "tag": "forge:dusts/beryllium"
+    },
+    {
+      "tag": "forge:dusts/copper"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:toxic_agent",
+    "count": 1
+  }
+}

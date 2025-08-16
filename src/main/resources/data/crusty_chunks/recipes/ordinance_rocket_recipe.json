@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "cec"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    },
+    "b": {
+      "item": "crusty_chunks:steel_component"
+    },
+    "c": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "d": {
+      "item": "crusty_chunks:solid_rocket_fuel_pack"
+    },
+    "e": {
+      "item": "crusty_chunks:steel_tube"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_thruster",
+    "count": 1
+  }
+}

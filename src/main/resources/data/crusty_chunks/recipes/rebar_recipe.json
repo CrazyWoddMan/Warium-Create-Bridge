@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:wires/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:rebar",
+    "count": 32
+  }
+}

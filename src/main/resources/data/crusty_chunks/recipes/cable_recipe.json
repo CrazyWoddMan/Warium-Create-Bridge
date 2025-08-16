@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bbb",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:dried_kelp"
+    },
+    "b": {
+      "tag": "forge:wires/copper"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:cable",
+    "count": 16
+  }
+}

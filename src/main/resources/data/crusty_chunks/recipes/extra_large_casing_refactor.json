@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "crusty_chunks"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          { "tag": "forge:plates/brass" },
+          { "tag": "forge:plates/brass" },
+          { "tag": "forge:plates/brass" },
+          { "tag": "forge:plates/brass" },
+          { "item": "crusty_chunks:cutters" }
+        ],
+        "result": {
+          "item": "crusty_chunks:extra_large_casing",
+          "count": 10
+        }
+      }
+    }
+  ]
+}

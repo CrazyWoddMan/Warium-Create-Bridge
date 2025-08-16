@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bdb",
+    "cba"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:electric_motor"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:steel_component"
+    },
+    "d": {
+      "item": "crusty_chunks:aimer"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:aimer_node",
+    "count": 1
+  }
+}

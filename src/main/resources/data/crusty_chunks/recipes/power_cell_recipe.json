@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "ded",
+    "ded"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:cable"
+    },
+    "b": {
+      "item": "crusty_chunks:bent_component"
+    },
+    "c": {
+      "item": "minecraft:redstone"
+    },
+    "d": {
+      "tag": "forge:ingots/lead"
+    },
+    "e": {
+      "tag": "forge:dusts/sulfur"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:power_cell",
+    "count": 1
+  }
+}

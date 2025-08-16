@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "crusty_chunks"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " S ",
+          "SW ",
+          "  W"
+        ],
+        "key": {
+          "S": { "tag": "forge:ingots/steel" },
+          "W": { "item": "crusty_chunks:wood_component"}
+        },
+        "result": {
+          "item": "crusty_chunks:hammer",
+          "count": 1
+        }
+      }
+    }
+  ]
+}

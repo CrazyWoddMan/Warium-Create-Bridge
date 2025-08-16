@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a",
+    "bc",
+    " d"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:gunpowder"
+    },
+    "b": {
+      "forge": "forge:dusts/aluminum"
+    },
+    "c": {
+      "item": "minecraft:paper"
+    },
+    "d": {
+      "tag": "forge:plates/brass"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:chaff_charge",
+    "count": 8
+  }
+}

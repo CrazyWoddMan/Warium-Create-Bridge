@@ -1,0 +1,10 @@
+{
+	"type":"createaddition:rolling",
+	"input": {
+      	"tag": "forge:plates/brass"
+	},
+	"result": {
+		"item": "crusty_chunks:brass_fitting",
+		"count": 1
+	}
+}

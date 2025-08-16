@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:cast_component"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:press"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:extruder",
+    "count": 1
+  }
+}

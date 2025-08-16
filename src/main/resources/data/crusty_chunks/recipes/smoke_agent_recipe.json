@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/aluminum"
+    },
+    {
+      "tag": "forge:dusts/zinc"
+    },
+    {
+      "tag": "forge:dusts/nickel"
+    },
+    {
+      "tag": "forge:gunpowder"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:smoke_agent",
+    "count": 1
+  }
+}

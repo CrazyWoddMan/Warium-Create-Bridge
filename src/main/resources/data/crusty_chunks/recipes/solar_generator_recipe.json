@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "ddd"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:daylight_detector"
+    },
+    "b": {
+      "tag": "forge:ingots/lithium"
+    },
+    "c": {
+      "item": "crusty_chunks:cable"
+    },
+    "d": {
+      "item": "crusty_chunks:bent_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:solar_generator",
+    "count": 1
+  }
+}

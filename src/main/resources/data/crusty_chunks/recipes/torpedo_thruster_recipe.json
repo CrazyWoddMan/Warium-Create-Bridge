@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "minecraft:redstone"
+    },
+    "c": {
+      "item": "crusty_chunks:electric_motor"
+    },
+    "d": {
+      "tag": "forge:ingots/brass"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:torpedo_thruster",
+    "count": 1
+  }
+}

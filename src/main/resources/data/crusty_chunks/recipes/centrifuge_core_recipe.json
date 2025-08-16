@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "ded",
+    "cba"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "item": "crusty_chunks:copper_coil"
+    },
+    "d": {
+      "item": "crusty_chunks:steel_tube"
+    },
+    "e": {
+      "item": "crusty_chunks:bored_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:centrifuge_core",
+    "count": 1
+  }
+}

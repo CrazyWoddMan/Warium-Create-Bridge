@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bcd",
+    "cde"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:ingots/lead"
+    },
+    "b": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "c": {
+      "item": "crusty_chunks:volatile_dust"
+    },
+    "d": {
+      "tag": "forge:plates/steel"
+    },
+    "e": {
+      "item": "crusty_chunks:shaped_charge_fuze"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:implosion_module",
+    "count": 1
+  }
+}

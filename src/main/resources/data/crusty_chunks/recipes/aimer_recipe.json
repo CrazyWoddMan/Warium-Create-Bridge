@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "abc",
+    " c "
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:steel_gear"
+    },
+    "b": {
+      "item": "minecraft:glass_pane"
+    },
+    "c": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:aimer",
+    "count": 1
+  }
+}

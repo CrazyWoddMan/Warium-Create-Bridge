@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    "cdc"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "b": {
+      "item": "crusty_chunks:fission_bomb"
+    },
+    "c": {
+      "tag": "forge:plates/steel"
+    },
+    "d": {
+      "item": "minecraft:repeater"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:ordinance_inline_fission_warhead",
+    "count": 1
+  }
+}

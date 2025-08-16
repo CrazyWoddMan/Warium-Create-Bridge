@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/aluminum"
+    },
+    "b": {
+      "item": "crusty_chunks:glass_trapdoor"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:reinforced_glass_trapdoor",
+    "count": 1
+  }
+}

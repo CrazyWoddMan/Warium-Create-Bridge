@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:plates/steel"
+    },
+    "b": {
+      "item": "minecraft:leather_chestplate"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:body_armor_chestplate",
+    "count": 1
+  }
+}

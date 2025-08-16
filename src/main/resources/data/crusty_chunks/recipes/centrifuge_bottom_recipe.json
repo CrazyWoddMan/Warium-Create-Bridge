@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "cec"
+  ],
+  "key": {
+    "a": {
+      "item": "crusty_chunks:copper_coil"
+    },
+    "b": {
+      "tag": "forge:plates/steel"
+    },
+    "c": {
+      "tag": "forge:ingots/steel"
+    },
+    "d": {
+      "item": "crusty_chunks:conveyor_lift"
+    },
+    "e": {
+      "item": "crusty_chunks:giant_coil"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:centrifuge_bottom",
+    "count": 1
+  }
+}
