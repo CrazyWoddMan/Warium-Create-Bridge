@@ -17,20 +17,26 @@ public class LargeDieselGeneratorBlockEntityMixin {
         at = @At("HEAD"),
         remap = false
     )
-    private void warium$throttleControl(CallbackInfo callbackInfo) {
+    private void throttleControl(CallbackInfo callbackInfo) {
         LargeDieselGeneratorBlockEntity self = (LargeDieselGeneratorBlockEntity) (Object) this;
-        double controlX = self.getPersistentData().getDouble("ControlX");
-        double controlY = self.getPersistentData().getDouble("ControlY");
-        double controlZ = self.getPersistentData().getDouble("ControlZ");
-        boolean hasLink = !(controlX == 0 && controlY == 0 && controlZ == 0);
-        double throttle = 0;
-        if (hasLink) {
-            BlockPos controlPos = new BlockPos((int) controlX, (int) controlY, (int) controlZ);
+        int throttle = 0;
+        if (
+            self.getPersistentData().contains("ControlX") &&
+            self.getPersistentData().contains("ControlY") &&
+            self.getPersistentData().contains("ControlZ")
+        ) {
+            int controlX = self.getPersistentData().getInt("ControlX");
+            int controlY = self.getPersistentData().getInt("ControlY");
+            int controlZ = self.getPersistentData().getInt("ControlZ");
+            BlockPos controlPos = new BlockPos(controlX, controlY, controlZ);
             BlockEntity controlNode = self.getLevel().getBlockEntity(controlPos);
             if (controlNode != null && controlNode.getPersistentData().contains("Throttle")) {
-                throttle = controlNode.getPersistentData().getDouble("Throttle");
-                self.getLevel().setBlock(self.getBlockPos(),
-                    self.getBlockState().setValue(DieselGeneratorBlock.POWERED, throttle <= 0), 3);
+                throttle = controlNode.getPersistentData().getInt("Throttle");
+                self.getLevel().setBlock(
+                    self.getBlockPos(),
+                    self.getBlockState().setValue(DieselGeneratorBlock.POWERED, throttle == 0),
+                    3
+                );
                 self.updateGeneratedRotation();
             }
         }

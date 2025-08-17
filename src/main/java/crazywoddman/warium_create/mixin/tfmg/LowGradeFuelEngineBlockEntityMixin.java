@@ -18,22 +18,25 @@ public class LowGradeFuelEngineBlockEntityMixin {
         at = @At("HEAD"),
         remap = false
     )
-    private void warium$injectSignalTick(CallbackInfo ci) {
+    private void injectSignalTick(CallbackInfo ci) {
         LowGradeFuelEngineBlockEntity self = (LowGradeFuelEngineBlockEntity) (Object) this;
-        double controlX = self.getPersistentData().getDouble("ControlX");
-        double controlY = self.getPersistentData().getDouble("ControlY");
-        double controlZ = self.getPersistentData().getDouble("ControlZ");
-        boolean hasLink = !(controlX == 0 && controlY == 0 && controlZ == 0);
         int throttle = 0;
-        if (hasLink) {
-            BlockPos controlPos = new BlockPos((int) controlX, (int) controlY, (int) controlZ);
+        if (
+            self.getPersistentData().contains("ControlX") &&
+            self.getPersistentData().contains("ControlY") &&
+            self.getPersistentData().contains("ControlZ")
+        ) {
+            int controlX = self.getPersistentData().getInt("ControlX");
+            int controlY = self.getPersistentData().getInt("ControlY");
+            int controlZ = self.getPersistentData().getInt("ControlZ");
+            BlockPos controlPos = new BlockPos(controlX, controlY, controlZ);
             BlockEntity controlNode = self.getLevel().getBlockEntity(controlPos);
             if (controlNode != null && controlNode.getPersistentData().contains("Throttle")) {
-                throttle = controlNode.getPersistentData().getInt("Throttle");
+                throttle = Math.abs(controlNode.getPersistentData().getInt("Throttle"));
             }
         }
-        if (throttle > 0) {
-            (( LowGradeFuelEngineBlockEntityAccessor) self).setSignal(Config.SERVER.TFMGspeedControl.get() ? throttle + 5 : 15);
+        if (throttle != 0) {
+            ((LowGradeFuelEngineBlockEntityAccessor) self).setSignal(Config.SERVER.TFMGspeedControl.get() ? throttle + 5 : 15);
         }
     }
 }

@@ -35,30 +35,30 @@ public class ConverterOutBlockEntity extends StressGaugeBlockEntity {
         double kineticPower = Math.max(Math.round(Math.abs(getSpeed()) / (defaultSpeed / 5)) * getThrottle(), 0);
         KineticNetwork network = hasNetwork() ? getOrCreateNetwork() : null;
         float avaiblestress = network != null ? Math.round(network.calculateCapacity() - network.calculateStress()) : 0;
-        dialTarget = SpeedGaugeBlockEntity.getDialTarget(((getThrottle() > 0 ? (float)getThrottle() : 0) * getSpeed() / 10));
+        dialTarget = SpeedGaugeBlockEntity.getDialTarget(((getThrottle()) * Math.abs(getSpeed()) / 10));
         this.getPersistentData().putFloat("StressCapacity", avaiblestress);
         this.getPersistentData().putDouble("KineticPower", avaiblestress / (defaultStress / 2000) / Math.abs(getSpeed()) >= defaultSpeed / 5 ? kineticPower : 0);
         sendData();
     }
 
-    private double getThrottle() {
+    private int getThrottle() {
+        if (
+            !getPersistentData().contains("ControlX") ||
+            !getPersistentData().contains("ControlY") ||
+            !getPersistentData().contains("ControlZ")
+        ) return 10;
+
         double controlX = getPersistentData().getDouble("ControlX");
         double controlY = getPersistentData().getDouble("ControlY");
         double controlZ = getPersistentData().getDouble("ControlZ");
-        boolean hasLink = !(controlX == 0 && controlY == 0 && controlZ == 0);
-
-        if (!hasLink) {
-            return 10;
-        }
 
         BlockPos controlPos = new BlockPos((int) controlX, (int) controlY, (int) controlZ);
         BlockEntity controlNode = level != null ? level.getBlockEntity(controlPos) : null;
 
-        if (controlNode != null && controlNode.getPersistentData().contains("Throttle")) {
-            return controlNode.getPersistentData().getDouble("Throttle");
-        }
+        if (controlNode != null && controlNode.getPersistentData().contains("Throttle"))
+            return Math.abs(controlNode.getPersistentData().getInt("Throttle"));
         
-        return 0;
+        return 10;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ConverterOutBlockEntity extends StressGaugeBlockEntity {
 		Lang.translate("gui.speedometer.title")
 			.style(ChatFormatting.GRAY)
 			.forGoggles(tooltip);
-		SpeedLevel.getFormattedSpeedText(getSpeed() / 10 * (getThrottle() > 0 ? (float)getThrottle() : 0) , isOverStressed)
+		SpeedLevel.getFormattedSpeedText(Math.abs(getSpeed()) / 10 * getThrottle(), isOverStressed)
 			.forGoggles(tooltip);
 
 		return true;
