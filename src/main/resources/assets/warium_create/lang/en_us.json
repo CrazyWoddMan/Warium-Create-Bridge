@@ -1,5 +1,5 @@
 {	
-	"block.warium_create.converter_out": "Stress Converter",
+	"block.warium_create.converter_out": "Rotation Converter",
 	"block.warium_create.converter_out.tooltip.summary": "Converts Create _stress capacity_ and _rotation_ to Warium _kinetic power_",
 	"block.warium_create.converter_in": "Kinetic Converter",
 	"block.warium_create.converter_in.tooltip.summary": "Converts Warium _kinetic power_ to Create _rotation_ and _stress capacity_",
@@ -8,7 +8,7 @@
 	"item.warium_create.yellowcake": "Yellowcake",
 	"item.warium_create.yellowcake.tooltip.summary": "Delicious and nutritious meal for you and your beloved _Blaze Burner_",
 	"fluid.warium_create.yellowcake_mixture": "Yellowcake Mixture",
-	"advancement.warium_create.eat_yellowcake.title": "20 Billion Сalories",
+	"advancement.warium_create.eat_yellowcake.title": "20 Billion Calories",
 	"advancement.warium_create.eat_yellowcake.desc": "Eat a Yellowcake",
 	"warium_create.breeder_reactor.processtime": "Processing Time",
 	"fluid_type.crusty_chunks.diesel": "Diesel",
