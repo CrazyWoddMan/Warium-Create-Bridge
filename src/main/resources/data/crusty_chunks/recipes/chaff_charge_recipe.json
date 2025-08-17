@@ -8,10 +8,10 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:gunpowder"
+      "tag": "forge:gunpowder"
     },
     "b": {
-      "forge": "forge:dusts/aluminum"
+      "tag": "forge:dusts/aluminum"
     },
     "c": {
       "item": "minecraft:paper"

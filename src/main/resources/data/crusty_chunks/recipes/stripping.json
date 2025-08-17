@@ -10,7 +10,7 @@
     }
   ],
   "result": {
-    "tag": "forge:wires/copper",
+    "item": "crusty_chunks:copper_wire",
     "count": 1
   }
 }
