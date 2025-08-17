@@ -99,7 +99,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:create-diesel-generators-869316:5401010")
     compileOnly fg.deobf("curse.maven:create-industry-693815:5811638")
     compileOnly fg.deobf("curse.maven:createaddition-439890:6084982")
-    compileOnly fg.deobf("blank:Warium-1.0.6:1.0.6")
+    compileOnly fg.deobf("blank:Warium-1.0.7:1.0.7")
     compileOnly fg.deobf("blank:WariumVS-0.0.10:0.0.10")
 }
 
