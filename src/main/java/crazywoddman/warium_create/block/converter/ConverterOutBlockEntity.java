@@ -32,10 +32,10 @@ public class ConverterOutBlockEntity extends StressGaugeBlockEntity {
         super.tick();
         if (level == null || level.isClientSide) return;
 
-        double kineticPower = Math.max(Math.round(Math.abs(getSpeed()) / (defaultSpeed / 5)) * getThrottle(), 0);
+        double kineticPower = Math.max(Math.round(Math.abs(getSpeed()) / (defaultSpeed / Config.SERVER.maxThrottle.get() / 2)) * getThrottle(), 0);
         KineticNetwork network = hasNetwork() ? getOrCreateNetwork() : null;
         float avaiblestress = network != null ? Math.round(network.calculateCapacity() - network.calculateStress()) : 0;
-        dialTarget = SpeedGaugeBlockEntity.getDialTarget(((getThrottle()) * Math.abs(getSpeed()) / 10));
+        dialTarget = SpeedGaugeBlockEntity.getDialTarget(Math.abs(getSpeed()) / Config.SERVER.maxThrottle.get() * getThrottle());
         this.getPersistentData().putFloat("StressCapacity", avaiblestress);
         this.getPersistentData().putDouble("KineticPower", avaiblestress / (defaultStress / 2000) / Math.abs(getSpeed()) >= defaultSpeed / 5 ? kineticPower : 0);
         sendData();
@@ -46,7 +46,7 @@ public class ConverterOutBlockEntity extends StressGaugeBlockEntity {
             !getPersistentData().contains("ControlX") ||
             !getPersistentData().contains("ControlY") ||
             !getPersistentData().contains("ControlZ")
-        ) return 10;
+        ) return Config.SERVER.maxThrottle.get();
 
         double controlX = getPersistentData().getDouble("ControlX");
         double controlY = getPersistentData().getDouble("ControlY");
@@ -89,7 +89,7 @@ public class ConverterOutBlockEntity extends StressGaugeBlockEntity {
 		Lang.translate("gui.speedometer.title")
 			.style(ChatFormatting.GRAY)
 			.forGoggles(tooltip);
-		SpeedLevel.getFormattedSpeedText(Math.abs(getSpeed()) / 10 * getThrottle(), isOverStressed)
+		SpeedLevel.getFormattedSpeedText(Math.abs(getSpeed()) / Config.SERVER.maxThrottle.get() * getThrottle(), isOverStressed)
 			.forGoggles(tooltip);
 
 		return true;

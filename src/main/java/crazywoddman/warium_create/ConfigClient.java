@@ -53,11 +53,10 @@ public class ConfigClient {
                                     Config.SERVER.energyToFErate.get()
                                 )
                                 .setTooltip(
-                                    Component.literal("How much ForgeEnergy = 1 Warium Energy unit"),
                                     Component.literal("This affects:"),
-                                    Component.literal("Energy Battery and Power Reactor FE capacity (8000 * value)"),
-                                    Component.literal("Rotation Generator FE output"),
-                                    Component.literal("FE needed for Electric Motor to work")
+                                    Component.literal("* Energy Battery and Power Reactor FE capacity (8000 * value)"),
+                                    Component.literal("* Rotation Generator FE output"),
+                                    Component.literal("* FE needed for Electric Motor to work")
                                 )
                                 .setDefaultValue(100)
                                 .setMin(1)
@@ -74,7 +73,8 @@ public class ConfigClient {
                                     Config.SERVER.defaultStress.get()
                                 )
                                 .setTooltip(
-                                    Component.literal("Note: this will affect whole conversion process, Light Combustion Engine is just for referernce")
+                                    Component.literal("Note: this will affect whole conversion process"),
+                                    Component.literal("Light Combustion Engine is just for referernce")
                                 )
                                 .setDefaultValue(2000)
                                 .setMin(1)
@@ -91,7 +91,8 @@ public class ConfigClient {
                                     Config.SERVER.defaultSpeed.get()
                                 )
                                 .setTooltip(
-                                    Component.literal("Note: this will affect whole conversion process, Light Combustion Engine is just for referernce")
+                                    Component.literal("Note: this will affect whole conversion process"),
+                                    Component.literal("Light Combustion Engine is just for referernce")
                                 )
                                 .setDefaultValue(100)
                                 .setMin(1)
@@ -157,6 +158,34 @@ public class ConfigClient {
                                 .setDefaultValue("SEETHING")
                                 .setSaveConsumer(newValue -> {
                                     Config.SERVER.electricFireboxHeat.set(BlazeBurnerBlock.HeatLevel.valueOf(newValue));
+                                    Config.SERVER_SPEC.save();
+                                })
+                                .build()
+                        );
+                        category.addEntry(
+                            entryBuilder
+                                .startIntField(
+                                    Component.literal("Minimal throttle value"),
+                                    Config.SERVER.minThrottle.get()
+                                )
+                                .setDefaultValue(-10)
+                                .setMax(0)
+                                .setSaveConsumer(newValue -> {
+                                    Config.SERVER.minThrottle.set(newValue);
+                                    Config.SERVER_SPEC.save();
+                                })
+                                .build()
+                        );
+                        category.addEntry(
+                            entryBuilder
+                                .startIntField(
+                                    Component.literal("Maximum throttle value"),
+                                    Config.SERVER.maxThrottle.get()
+                                )
+                                .setDefaultValue(10)
+                                .setMin(0)
+                                .setSaveConsumer(newValue -> {
+                                    Config.SERVER.maxThrottle.set(newValue);
                                     Config.SERVER_SPEC.save();
                                 })
                                 .build()

@@ -22,6 +22,8 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<HeatLevel> fireboxHeat;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> oilFireboxHeat;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> electricFireboxHeat;
+        public final ForgeConfigSpec.IntValue minThrottle;
+        public final ForgeConfigSpec.IntValue maxThrottle;
 
         public Server(ForgeConfigSpec.Builder builder) {
             builder.push("conversion");
@@ -61,6 +63,12 @@ public class Config {
                     value instanceof HeatLevel &&
                     (value.equals(HeatLevel.KINDLED) || value.equals(HeatLevel.SEETHING))
                 );
+            minThrottle = builder
+                .comment("Minimal throttle value that can be set using Control Seat")
+                .defineInRange("minThrottle", -10, Integer.MIN_VALUE, 0);
+            maxThrottle = builder
+                .comment("Maximum throttle value that can be set using Control Seat")
+                .defineInRange("maxThrottle", 10, 0, Integer.MAX_VALUE);
             builder.pop();
         }
     }
