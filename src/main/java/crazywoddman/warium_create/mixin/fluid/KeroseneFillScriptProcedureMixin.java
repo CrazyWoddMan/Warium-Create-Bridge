@@ -33,7 +33,7 @@ public class KeroseneFillScriptProcedureMixin {
         cancellable = true,
         remap = false
     )
-    private static void warium$acceptAnyKerosene(LevelAccessor world, double x, double y, double z, Entity entity, CallbackInfo ci) {
+    private static void acceptAnyKerosene(LevelAccessor world, double x, double y, double z, Entity entity, CallbackInfo ci) {
         if (entity instanceof LivingEntity living) {
             ItemStack held = living.getMainHandItem();
             held.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {

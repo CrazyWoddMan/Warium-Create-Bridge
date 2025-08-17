@@ -1,6 +1,6 @@
 {
   "values": [
     "crusty_chunks:trinitite_shard",
-	"minecraft:amethyst_shard"
+    "#forge:gems/amethyst"
   ]
 }

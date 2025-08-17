@@ -19,7 +19,7 @@ public class OrdinanceInlineFusionWarheadStage2BlockMixin {
         at = @At("HEAD"),
         cancellable = true
     )
-    private void warium$onlyHorizontal(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
+    private void onlyHorizontal(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
         if (context.getPlayer() != null && context.getPlayer().getClass().getName().equals("com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer")) {
             Direction deployerFacing = context.getHorizontalDirection();
             Direction placeFace = context.getClickedFace();

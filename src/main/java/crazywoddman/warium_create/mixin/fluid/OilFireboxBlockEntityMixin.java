@@ -28,13 +28,13 @@ import java.util.List;
 public abstract class OilFireboxBlockEntityMixin implements IHaveGoggleInformation {
 
     @Unique
-    private FluidTank warium$fluidTank;
+    private FluidTank fluidTank;
     
     @Unique
-    private FluidTank warium$getOrCreateFluidTank() {
-        if (warium$fluidTank == null) {
+    private FluidTank getOrCreateFluidTank() {
+        if (fluidTank == null) {
             final OilFireboxBlockEntity blockEntity = (OilFireboxBlockEntity)(Object)this;
-            warium$fluidTank = new FluidTank(5000) {
+            fluidTank = new FluidTank(5000) {
                 @Override
                 public int fill(FluidStack fluidStack, FluidAction action) {
                     boolean isAcceptableId = ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).getPath().equals("kerosene");
@@ -49,7 +49,7 @@ public abstract class OilFireboxBlockEntityMixin implements IHaveGoggleInformati
                         blockEntity.setChanged();
                         blockEntity.getLevel().sendBlockUpdated(blockEntity.getBlockPos(), blockEntity.getBlockState(), blockEntity.getBlockState(), 3);
                     }
-                    warium$syncFromPersistent();
+                    syncFromPersistent();
                     return Math.min(toAdd, capacity - fuel);
                 }
                 @Override
@@ -62,11 +62,11 @@ public abstract class OilFireboxBlockEntityMixin implements IHaveGoggleInformati
                 }
             };
         }
-        return warium$fluidTank;
+        return fluidTank;
     }
 
     @Unique
-    private final LazyOptional<IFluidHandler> warium$lazyFluid = LazyOptional.of(() -> warium$getOrCreateFluidTank());
+    private final LazyOptional<IFluidHandler> lazyFluid = LazyOptional.of(() -> getOrCreateFluidTank());
 
     @Inject(
         method = "getCapability",
@@ -74,30 +74,30 @@ public abstract class OilFireboxBlockEntityMixin implements IHaveGoggleInformati
         cancellable = true,
         remap = false
     )
-    private void warium$injectFluidCap(Capability<?> cap, Direction side, CallbackInfoReturnable<LazyOptional<Object>> cir) {
+    private void injectFluidCap(Capability<?> cap, Direction side, CallbackInfoReturnable<LazyOptional<Object>> cir) {
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            warium$syncFromPersistent();
-            cir.setReturnValue(warium$lazyFluid.cast());
+            syncFromPersistent();
+            cir.setReturnValue(lazyFluid.cast());
         }
     }
 
     @Unique
-    private void warium$syncFromPersistent() {
+    private void syncFromPersistent() {
         OilFireboxBlockEntity blockEntity = (OilFireboxBlockEntity)(Object)this;
         int fuel = blockEntity.getPersistentData().getInt("Fuel");
         FluidStack stack = FluidStack.EMPTY;
         if (fuel > 0)
             stack = new FluidStack(CrustyChunksModFluids.KEROSENE.get(), fuel);
-        warium$getOrCreateFluidTank().setFluid(stack);
+        getOrCreateFluidTank().setFluid(stack);
     }
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        warium$syncFromPersistent();
+        syncFromPersistent();
         return ((IHaveGoggleInformation) (Object) this).containedFluidTooltip(
             tooltip,
             isPlayerSneaking,
-            LazyOptional.of(this::warium$getOrCreateFluidTank)
+            LazyOptional.of(this::getOrCreateFluidTank)
         );
     }
 }

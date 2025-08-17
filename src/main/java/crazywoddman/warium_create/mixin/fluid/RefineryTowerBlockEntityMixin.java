@@ -22,40 +22,40 @@ import java.util.List;
 public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInformation {
 
     @Unique
-    private FluidTank warium$fluidTank;
+    private FluidTank fluidTank;
 
     @Unique
-    private FluidTank warium$getOrCreateFluidTank() {
-        if (warium$fluidTank == null) {
+    private FluidTank getOrCreateFluidTank() {
+        if (fluidTank == null) {
             final RefineryTowerBlockEntity blockEntity = (RefineryTowerBlockEntity)(Object)this;
-            warium$fluidTank = new FluidTank(16000) {
+            fluidTank = new FluidTank(16000) {
                 @Override
                 public int fill(FluidStack resource, FluidAction action) {
                     return 0;
                 }
                 @Override
                 public FluidStack drain(FluidStack resource, FluidAction action) {
-                    warium$syncFromPersistent();
+                    syncFromPersistent();
                     return super.drain(resource, action);
                 }
                 @Override
                 public FluidStack drain(int maxDrain, FluidAction action) {
-                    warium$syncFromPersistent();
+                    syncFromPersistent();
                     return super.drain(maxDrain, action);
                 }
                 @Override
                 protected void onContentsChanged() {
                     blockEntity.getPersistentData().putDouble("Level", this.getFluidAmount());
-                    blockEntity.getPersistentData().putString("Fluid", warium$getFluidName(this.getFluid()));
+                    blockEntity.getPersistentData().putString("Fluid", getFluidName(this.getFluid()));
                     blockEntity.setChanged();
                 }
             };
         }
-        return warium$fluidTank;
+        return fluidTank;
     }
 
     @Unique
-    private final LazyOptional<IFluidHandler> warium$lazyFluid = LazyOptional.of(() -> warium$getOrCreateFluidTank());
+    private final LazyOptional<IFluidHandler> lazyFluid = LazyOptional.of(() -> getOrCreateFluidTank());
 
     @Inject(
         method = "getCapability",
@@ -63,15 +63,15 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
         cancellable = true,
         remap = false
     )
-    private void warium$injectFluidCap(Capability<?> cap, Direction side, CallbackInfoReturnable<LazyOptional<Object>> cir) {
+    private void injectFluidCap(Capability<?> cap, Direction side, CallbackInfoReturnable<LazyOptional<Object>> cir) {
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            warium$syncFromPersistent();
-            cir.setReturnValue(warium$lazyFluid.cast());
+            syncFromPersistent();
+            cir.setReturnValue(lazyFluid.cast());
         }
     }
 
     @Unique
-    private void warium$syncFromPersistent() {
+    private void syncFromPersistent() {
         RefineryTowerBlockEntity blockEntity = (RefineryTowerBlockEntity)(Object)this;
         double level = blockEntity.getPersistentData().getDouble("Level");
         String fluid = blockEntity.getPersistentData().getString("Fluid");
@@ -85,11 +85,11 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
         } else if ("Petrolium".equals(fluid)) {
             stack = new FluidStack(CrustyChunksModFluids.PETROLIUM.get(), (int)level);
         }
-        warium$getOrCreateFluidTank().setFluid(stack);
+        getOrCreateFluidTank().setFluid(stack);
     }
 
     @Unique
-    private String warium$getFluidName(FluidStack stack) {
+    private String getFluidName(FluidStack stack) {
         if (stack.getFluid() == CrustyChunksModFluids.DIESEL.get()) return "Diesel";
         if (stack.getFluid() == CrustyChunksModFluids.KEROSENE.get()) return "Kerosene";
         if (stack.getFluid() == CrustyChunksModFluids.OIL.get()) return "Oil";
@@ -99,11 +99,11 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        warium$syncFromPersistent();
+        syncFromPersistent();
         return containedFluidTooltip(
             tooltip,
             isPlayerSneaking,
-            LazyOptional.of(this::warium$getOrCreateFluidTank)
+            LazyOptional.of(this::getOrCreateFluidTank)
         );
     }
 }

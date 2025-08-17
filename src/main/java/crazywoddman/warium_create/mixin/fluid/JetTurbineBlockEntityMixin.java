@@ -32,12 +32,12 @@ public class JetTurbineBlockEntityMixin implements IHaveGoggleInformation {
         method = "<init>",
         at = @At("RETURN")
     )
-    private void warium$acceptAnyKerosene(BlockPos position, BlockState state, CallbackInfo ci) {
-        fluidTank.setValidator(this::warium$allowedFluid);
+    private void acceptAnyKerosene(BlockPos position, BlockState state, CallbackInfo ci) {
+        fluidTank.setValidator(this::allowedFluid);
     }
 
     @Unique
-    private boolean warium$allowedFluid(FluidStack fluidStack) {
+    private boolean allowedFluid(FluidStack fluidStack) {
         boolean isAcceptableId = ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).getPath().equals("kerosene");
         boolean isAcceptableTag = fluidStack.getFluid().is(FluidTags.create(new ResourceLocation("forge", "kerosene")));
         return !fluidStack.isEmpty() && (isAcceptableId || isAcceptableTag);

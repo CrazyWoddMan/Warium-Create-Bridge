@@ -79,6 +79,13 @@ repositories {
         }
     }
     maven {
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+    maven {
         url "https://cursemaven.com"
         content {
             includeGroup "curse.maven"
@@ -101,6 +108,8 @@ dependencies {
     compileOnly fg.deobf("curse.maven:createaddition-439890:6084982")
     compileOnly fg.deobf("blank:Warium-1.0.7:1.0.7")
     compileOnly fg.deobf("blank:WariumVS-0.0.10:0.0.10")
+    compileOnly fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.7.3")
+    compileOnly("com.eliotlash.mclib:mclib:20")
 }
 
 mixin {

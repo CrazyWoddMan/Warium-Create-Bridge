@@ -63,7 +63,12 @@
     "BlazeBurnerBlockEntityMixin",
     "ElectricMotorBlockEntityMixin",
     "FireboxBlockEntityAccessor",
-    "FireboxUpdateTickProcedureMixin"
+    "FireboxUpdateTickProcedureMixin",
+	"PropellerScriptProcedureMixin",
+	"WaterPropScriptProcedureMixin",
+	"HeliRotorScriptProcedureMixin",
+	"Throttle0PressProcedureMixin",
+	"Throttle1PressProcedureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

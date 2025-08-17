@@ -30,7 +30,7 @@ public abstract class FuelTankInputBlockEntityMixin implements IHaveGoggleInform
         method = "<init>",
         at = @At("RETURN")
     )
-    private void warium$acceptAnyFuel(BlockPos position, BlockState state, CallbackInfo callback) {
+    private void acceptAnyFuel(BlockPos position, BlockState state, CallbackInfo callback) {
         fluidTank.setValidator(this::isAllowedFluid);
     }
 

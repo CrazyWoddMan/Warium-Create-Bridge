@@ -32,7 +32,7 @@ public class LiquidFuelRocketBlockEntityMixin implements IHaveGoggleInformation 
         method = "<init>",
         at = @At("RETURN")
     )
-    private void warium$acceptOnlyKerosene(BlockPos position, BlockState state, CallbackInfo ci) {
+    private void acceptOnlyKerosene(BlockPos position, BlockState state, CallbackInfo ci) {
         fluidTank.setValidator(this::wariumcreatebridge_isAllowedFluid);
     }
 

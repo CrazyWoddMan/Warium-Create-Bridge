@@ -2,47 +2,59 @@
   "values": [
     "warium_create:converter_out",
     "warium_create:controllable_trigger",
-	{
+    {
+      "id": "valkyrien_warium:propeller",
+      "required": false
+    },
+    {
+      "id": "valkyrien_warium:boat_propeller",
+      "required": false
+    },
+    {
+      "id": "valkyrien_warium:heli_rotor",
+      "required": false
+    },
+    {
       "id": "createdieselgenerators:diesel_engine",
       "required": false
     },
-	{
+    {
       "id": "createdieselgenerators:large_diesel_engine",
       "required": false
     },
-	{
+    {
       "id": "createdieselgenerators:huge_diesel_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:gasoline_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:lpg_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:turbine_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:compact_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:low_grade_fuel_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:radial_engine",
       "required": false
     },
-	{
+    {
       "id": "tfmg:large_radial_engine",
       "required": false
     },
-	{
+    {
       "id": "createaddition:electric_motor",
       "required": false
     }

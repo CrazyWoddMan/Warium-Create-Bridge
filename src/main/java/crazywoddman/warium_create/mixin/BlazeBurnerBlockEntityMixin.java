@@ -19,7 +19,7 @@ public class BlazeBurnerBlockEntityMixin {
         at = @At("HEAD"),
         remap = false
     )
-    private void warium$provideHeat(CallbackInfo callback) {
+    private void provideHeat(CallbackInfo callback) {
         BlazeBurnerBlockEntity self = (BlazeBurnerBlockEntity) (Object) this;
         Level level = self.getLevel();
         if (level == null || level.isClientSide()) return;

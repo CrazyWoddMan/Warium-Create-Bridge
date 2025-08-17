@@ -22,7 +22,7 @@ public abstract class BucketItemMixin {
         cancellable = true,
         remap = false
     )
-    private void warium$addFluidHandler(ItemStack stack, CompoundTag nbt, CallbackInfoReturnable<ICapabilityProvider> cir) {
+    private void addFluidHandler(ItemStack stack, CompoundTag nbt, CallbackInfoReturnable<ICapabilityProvider> cir) {
         // Только для ведер Warium (по namespace)
         String regName = "";
         if (stack != null && stack.getItem() != null) {

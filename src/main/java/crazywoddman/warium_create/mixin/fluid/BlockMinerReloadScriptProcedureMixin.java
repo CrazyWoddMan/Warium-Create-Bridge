@@ -34,7 +34,7 @@ public class BlockMinerReloadScriptProcedureMixin {
         cancellable = true,
         remap = false
     )
-    private static void warium$acceptAnyFuel(LevelAccessor world, double x, double y, double z, Entity entity, CallbackInfo ci) {
+    private static void acceptAnyFuel(LevelAccessor world, double x, double y, double z, Entity entity, CallbackInfo ci) {
         if (entity instanceof LivingEntity living) {
             for (InteractionHand hand : InteractionHand.values()) {
                 ItemStack held = living.getItemInHand(hand);

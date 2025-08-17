@@ -32,12 +32,12 @@ public class LightCombustionEngineBlockEntityMixin implements IHaveGoggleInforma
         method = "<init>",
         at = @At("RETURN")
     )
-    private void warium$acceptAnyDiesel(BlockPos position, BlockState state, CallbackInfo ci) {
-        fluidTank.setValidator(this::warium$allowedFluid);
+    private void acceptAnyDiesel(BlockPos position, BlockState state, CallbackInfo ci) {
+        fluidTank.setValidator(this::allowedFluid);
     }
 
     @Unique
-    private boolean warium$allowedFluid(FluidStack fluidStack) {
+    private boolean allowedFluid(FluidStack fluidStack) {
         boolean isAcceptableId = ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).getPath().equals("diesel");
         boolean isAcceptableTag = fluidStack.getFluid().is(FluidTags.create(new ResourceLocation("forge", "diesel")));
         return !fluidStack.isEmpty() && (isAcceptableId || isAcceptableTag);

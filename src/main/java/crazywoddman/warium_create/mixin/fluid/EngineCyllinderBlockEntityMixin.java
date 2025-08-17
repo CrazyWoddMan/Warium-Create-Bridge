@@ -31,7 +31,7 @@ public class EngineCyllinderBlockEntityMixin implements IHaveGoggleInformation {
         method = "<init>",
         at = @At("RETURN")
     )
-    private void warium$acceptAnyFuel(BlockPos position, BlockState state, CallbackInfo ci) {
+    private void acceptAnyFuel(BlockPos position, BlockState state, CallbackInfo ci) {
         fluidTank.setValidator(this::isAllowedFluid);
     }
 

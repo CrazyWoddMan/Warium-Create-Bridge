@@ -27,7 +27,7 @@ public class FireboxUpdateTickProcedureMixin {
         at = @At("HEAD"),
         remap = false
     )
-    private static void warium$setHeatLevel(LevelAccessor world, double x, double y, double z, CallbackInfo ci) {
+    private static void setHeatLevel(LevelAccessor world, double x, double y, double z, CallbackInfo ci) {
         BlockPos pos = BlockPos.containing(x, y, z);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof FireboxBlockEntity) {
