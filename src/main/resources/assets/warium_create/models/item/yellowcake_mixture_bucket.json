@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0" : "warium_create:item/yellowcake_mixture_bucket"
+	}
+}
