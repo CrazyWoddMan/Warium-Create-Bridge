@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:bauxite"
+    }
+  ],
+  "processingTime": 400,
+  "results": [
+    {
+      "item": "crusty_chunks:bauxite_dust"
+    },
+    {
+      "chance": 0.25,
+      "item": "minecraft:sand"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:raw_beryllium"
+    }
+  ],
+  "processingTime": 400,
+  "results": [
+    {
+      "item": "crusty_chunks:beryllium_dust"
+    },
+    {
+      "chance": 0.25,
+      "item": "crusty_chunks:beryllium_dust"
+    }
+  ]
+}

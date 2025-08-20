@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/iron"
+    },
+    {
+      "tag": "forge:dusts/iron"
+    }
+  ],
+  "results": [
+    {
+      "item": "crusty_chunks:steel_ingot"
+    }
+  ]
+}

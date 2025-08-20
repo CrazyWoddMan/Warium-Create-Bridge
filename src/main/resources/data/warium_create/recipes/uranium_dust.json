@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:raw_uranium"
+    }
+  ],
+  "processingTime": 400,
+  "results": [
+    {
+      "item": "crusty_chunks:uranium_neutraltiny_dust"
+    },
+    {
+      "chance": 0.25,
+      "item": "crusty_chunks:uranium_depleted_tiny_dust"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:raw_lithium"
+    }
+  ],
+  "processingTime": 400,
+  "results": [
+    {
+      "item": "crusty_chunks:lithium_dust"
+    },
+    {
+      "chance": 0.25,
+      "item": "crusty_chunks:lithium_dust"
+    }
+  ]
+}
