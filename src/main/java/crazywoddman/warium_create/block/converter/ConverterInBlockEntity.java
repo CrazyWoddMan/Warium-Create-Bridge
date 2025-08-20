@@ -54,10 +54,11 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
 
     @Override
     public float getGeneratedSpeed() {
-        if (this.getPersistentData().getDouble("KineticPower") <= 0)
+        float kineticPower = this.getPersistentData().getFloat("KineticPower");
+        if (kineticPower <= 0)
             return 0;
         int sign = movementDirection.get() == RotationDirection.CLOCKWISE ? -1 : 1;
-        return convertToDirection(defaultSpeed * sign, getBlockState().getValue(ConverterIn.FACING));
+        return convertToDirection(defaultSpeed / 50 * kineticPower * sign, getBlockState().getValue(ConverterIn.FACING));
     }
 
     @Override
