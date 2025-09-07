@@ -5,28 +5,25 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerBlock.HeatLevel;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class Config {
-    public static final ForgeConfigSpec SERVER_SPEC;
-    public static final Server SERVER;
-
-    static {
-        final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        SERVER = new Server(builder);
-        SERVER_SPEC = builder.build();
-    }
+    private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    public static final Server SERVER = new Server(builder);
+    public static final ForgeConfigSpec SERVER_SPEC = builder.build();
 
     public static class Server {
         public final ForgeConfigSpec.IntValue energyToFErate;
-        public final ForgeConfigSpec.DoubleValue defaultStress;
+        public final ForgeConfigSpec.IntValue defaultStress;
         public final ForgeConfigSpec.IntValue defaultSpeed;
-        public final ForgeConfigSpec.BooleanValue TFMGspeedControl;
+        public final ForgeConfigSpec.BooleanValue converterSpeedControl;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> fireboxHeat;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> oilFireboxHeat;
         public final ForgeConfigSpec.ConfigValue<HeatLevel> electricFireboxHeat;
         public final ForgeConfigSpec.IntValue minThrottle;
         public final ForgeConfigSpec.IntValue maxThrottle;
+        public final ForgeConfigSpec.DoubleValue enginePower;
+        public final ForgeConfigSpec.DoubleValue turbinePower;
+        public final ForgeConfigSpec.IntValue kineticConverterReponse;
 
         public Server(ForgeConfigSpec.Builder builder) {
-            builder.push("conversion");
             energyToFErate = builder
                 .comment("How much ForgeEnergy = 1 Warium Energy unit. ")
                 .comment("This affects:")
@@ -35,17 +32,14 @@ public class Config {
                 .comment("  FE needed for Electric Motor to work")
                 .defineInRange("energyToForgeEnergyRate", 100, 1, Integer.MAX_VALUE);
             defaultStress = builder
-                .comment("Light Combustion Engine Stress Units equivalent")
-                .comment("Note: this will affect whole conversion process, Light Combustion Engine is just for referernce")
-                .defineInRange("combustionEngineStress", 2000, 1, Double.MAX_VALUE);
+                .comment("How many Stress Untis will be equivalent to 1 Kinetic Power unit")
+                .defineInRange("kineticToStressRate", 40, 1, Integer.MAX_VALUE);
             defaultSpeed = builder
-                .comment("Light Combustion Engine Speed equivalent")
-                .comment("Note: this will affect whole conversion process, Light Combustion Engine is just for referernce")
-                .defineInRange("defaultSpeed", 100, 1, 256);
-            TFMGspeedControl = builder
-                .comment("Whether TFMG engines connected to Vehicle Control Node should change their speed from throttle value")
-                .comment("If set to false, Vehicle Control Node will only turn engines on/off (max speed when turned on)")
-                .define("TFMGspeedControl", true);
+                .comment("What Rotation Speed is equivalent to 1 Kinetic Power unit")
+                .defineInRange("kineticToSpeedRate", 2, 1, 256);
+            converterSpeedControl = builder
+                .comment("Whether Kinetic Converter value box allows to select generating speed")
+                .define("kineticConverterSpeedControl", false);
             fireboxHeat = builder
                 .comment("Blaze Burner type heat level for fireboxes")
                 .comment("Allowed values are KINDLED or SEETHING")
@@ -69,7 +63,16 @@ public class Config {
             maxThrottle = builder
                 .comment("Maximum throttle value that can be set using Control Seat")
                 .defineInRange("maxThrottle", 10, 0, Integer.MAX_VALUE);
-            builder.pop();
+            kineticConverterReponse = builder
+                .comment("Tick-measured Kinetic Converter response delay when changing throttle")
+                .comment("WARNING: lowering this value may cause shafts to break when changing throttle too fast")
+                .defineInRange("kineticConverterReponse", 8, 0, 40);
+            enginePower = builder
+                .comment("Combution engines KineticPower output")
+                .defineInRange("enginesPower", 50.0, 0, Double.MAX_VALUE);
+            turbinePower = builder
+                .comment("Jet Turbine KineticPower output")
+                .defineInRange("turbinePower", 51.0, 0, Double.MAX_VALUE);
         }
     }
 }
