@@ -13,15 +13,20 @@ public class CreativeTabs {
 
     @SubscribeEvent
     public static void onBuildCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey().location().equals(new ResourceLocation("crusty_chunks", "warium_logistics"))) {
+        if (event.getTabKey().location().equals(ResourceLocation.fromNamespaceAndPath("crusty_chunks", "warium_logistics"))) {
             event.accept(WariumCreateBlocks.CONVERTER_IN.asStack());
             event.accept(WariumCreateBlocks.CONVERTER_OUT.asStack());
         }
-        if (event.getTabKey().location().equals(new ResourceLocation("valkyrien_warium", "warium_vs")))
+        if (event.getTabKey().location().equals(ResourceLocation.fromNamespaceAndPath("valkyrien_warium", "warium_vs")))
             event.accept(WariumCreateBlocks.CONTROLLABLE_TRIGGER.asStack());
-        if (event.getTabKey().location().equals(new ResourceLocation("crusty_chunks", "crusty_production")))
+
+        if (event.getTabKey().location().equals(ResourceLocation.fromNamespaceAndPath("crusty_chunks", "crusty_production")))
             event.accept(WariumCreateItems.YELLOWCAKE.get());
-        if (event.getTabKey().location().equals(new ResourceLocation("crusty_chunks", "crusty_ores")))
+
+        if (event.getTabKey().location().equals(ResourceLocation.fromNamespaceAndPath("crusty_chunks", "crusty_ores")))
             event.accept(WariumCreateFluids.YELLOWCAKE_FLUID.getBucket().get());
+
+        if (event.getTabKey().location().equals(ResourceLocation.fromNamespaceAndPath("crusty_chunks", "crusty_components")))
+            event.accept(WariumCreateItems.PETROLIUM_BOTTLE.get());
     }
 }

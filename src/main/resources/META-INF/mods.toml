@@ -31,7 +31,7 @@ license="MIT"
 [[dependencies.warium_create]]
     modId="crusty_chunks"
     mandatory=true 
-    versionRange="[1.0.6,)"
+    versionRange="[1.1.0,)"
     ordering="AFTER"
     side="BOTH"
 

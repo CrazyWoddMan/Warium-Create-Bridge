@@ -21,8 +21,8 @@ public class WariumCreateFluids {
         WariumCreate.REGISTRATE
             .fluid(
                 "yellowcake_mixture",
-                new ResourceLocation("warium_create:block/yellowcake_mixture_still"),
-                new ResourceLocation("warium_create:block/yellowcake_mixture_flow"),
+                ResourceLocation.parse("warium_create:block/yellowcake_mixture_still"),
+                ResourceLocation.parse("warium_create:block/yellowcake_mixture_flow"),
                 YellowcakeFluidType.create()
             )
 			.fluidProperties(p -> p

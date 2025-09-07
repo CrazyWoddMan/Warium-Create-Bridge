@@ -79,7 +79,8 @@ public class ControllableTrigger extends Block implements EntityBlock {
     public int getDirectSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
         return getSignal(state, world, pos, direction);
     }
-
+    
+    @SuppressWarnings("deprecation")
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, level, pos, block, fromPos, isMoving);

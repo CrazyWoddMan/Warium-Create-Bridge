@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class CustomOilFireboxBlock extends OilFireboxBlock {
     public static final EnumProperty<HeatLevel> HEAT_LEVEL =
-            EnumProperty.create("blaze", HeatLevel.class);
+        EnumProperty.create("blaze", HeatLevel.class);
 
     public CustomOilFireboxBlock() {
         super();
