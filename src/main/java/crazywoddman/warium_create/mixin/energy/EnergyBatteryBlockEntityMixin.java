@@ -1,9 +1,10 @@
 package crazywoddman.warium_create.mixin.energy;
 
 import crazywoddman.warium_create.Config;
+import crazywoddman.warium_create.util.WariumCreateTooltipHelper;
+
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
 import net.mcreator.crustychunks.block.entity.EnergyBatteryBlockEntity;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -12,75 +13,43 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin(EnergyBatteryBlockEntity.class)
+@Mixin(remap = false, value = EnergyBatteryBlockEntity.class)
 public abstract class EnergyBatteryBlockEntityMixin implements IHaveGoggleInformation {
 
-    private static final String spacing = "    ";
+    @Unique
     private final int energyToFErate = Config.SERVER.energyToFErate.get();
+
+    @Unique
     private LazyOptional<IEnergyStorage> forgeEnergy = null;
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
         BlockEntity blockEntity = (BlockEntity)(Object)this;
-
-        tooltip.add(Component
-                .literal(spacing)
-                .append(Component.translatable("createaddition.tooltip.energy.stored"))
-                .withStyle(ChatFormatting.GRAY)
-        );
-        tooltip.add(Component
-                .literal(spacing)
-                .append(Component.literal(" "))
-                .append(Component.literal(formatFE(blockEntity.getPersistentData().getDouble("Energy") * energyToFErate)))
-                .append("fe")
-                .withStyle(ChatFormatting.AQUA)
-        );
-        tooltip.add(Component
-                .literal(spacing)
-                .append(Component.translatable("createaddition.tooltip.energy.capacity"))
-                .withStyle(ChatFormatting.GRAY)
-        );
-        tooltip.add(Component
-                .literal(spacing)
-                .append(Component.literal(" "))
-                .append(Component.literal(formatFE(blockEntity.getPersistentData().getDouble("Capacity") * energyToFErate)))
-                .append("fe")
-                .withStyle(ChatFormatting.AQUA)
-        );
+        WariumCreateTooltipHelper.addEnergyTooltip(tooltip, blockEntity, energyToFErate);
         return true;
-    }
-
-    private static String formatFE(double fe) {
-        if(fe >= 1000_000_000)
-                return Math.round(fe/100_000_000d)/10d + "G";
-        if(fe >= 1000_000)
-                return Math.round(fe/100_000d)/10d + "M";
-        if(fe >= 1000)
-                return Math.round(fe/100d)/10d + "K";
-        return fe + "";
     }
 
     @Inject(
         method = "getCapability",
         at = @At("HEAD"),
-        cancellable = true,
-        remap = false
+        cancellable = true
     )
-    private void warium$injectForgeEnergy(Capability<?> capability, Direction facing, CallbackInfoReturnable<LazyOptional<?>> cir) {
+    private void injectForgeEnergy(Capability<?> capability, Direction facing, CallbackInfoReturnable<LazyOptional<?>> cir) {
         if (capability == ForgeCapabilities.ENERGY) {
-            if (forgeEnergy == null) {
+            if (forgeEnergy == null)
                 forgeEnergy = LazyOptional.of(this::createEnergyStorage);
-            }
             cir.setReturnValue(forgeEnergy.cast());
         }
     }
 
+    @Unique
     private IEnergyStorage createEnergyStorage() {
         BlockEntity blockEntity = (BlockEntity)(Object)this;
         return new IEnergyStorage() {

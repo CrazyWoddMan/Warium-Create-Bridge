@@ -1,8 +1,11 @@
 package crazywoddman.warium_create.mixin.tooltip;
 
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+
+import crazywoddman.warium_create.util.WariumCreateTooltipHelper;
 import net.mcreator.crustychunks.block.entity.CentrifugeCoreBlockEntity;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -16,19 +19,20 @@ import java.util.List;
 
 @Mixin(CentrifugeCoreBlockEntity.class)
 public abstract class CentrifugeCoreBlockEntityMixin implements IHaveGoggleInformation {
-    private static final String spacing = "    ";
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
 
         boolean validItem = false;
+        int itemsAmount = 0;
         BlockEntity blockEntity = (BlockEntity)(Object)this;
 
         if (blockEntity instanceof Container container) {
             for (int i = 0; i < container.getContainerSize(); i++) {
                 ItemStack stack = container.getItem(i);
                 if (!stack.isEmpty()) {
-                    validItem = stack.is(ItemTags.create(new ResourceLocation("warium_create", "enrichable")));
+                    validItem = stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("warium_create", "enrichable")));
+                    itemsAmount = stack.getCount();
                     break;
                 }
             }
@@ -39,41 +43,37 @@ public abstract class CentrifugeCoreBlockEntityMixin implements IHaveGoggleInfor
 
         if (level != null) {
             BlockEntity aboveEntity = level.getBlockEntity(blockEntity.getBlockPos().above());
-            if (aboveEntity != null) {
+            if (aboveEntity != null)
                 isReady = aboveEntity.getPersistentData().getByte("Ready");
-            }
         }
 
         if (isReady != 1 || !validItem)
             return false;
 
-        int enrichmentTime = blockEntity.getPersistentData().getInt("enrichmentTimeGamerule");
+        CompoundTag data = blockEntity.getPersistentData();
+        int enrichmentTime = data.getInt("enrichmentTimeGamerule");
+        int timeLeft = (enrichmentTime - data.getInt("T")) / 4;
+        int timeLeftover = enrichmentTime / 4 * (itemsAmount - 1);
         
-        tooltip.add(Component.literal(spacing)
+        tooltip.add(Component.literal("    ")
             .append(Component.translatable("block.crusty_chunks.centrifuge_core"))
             .append(Component.literal(":"))
             .withStyle(ChatFormatting.AQUA)
         );
 
         tooltip.add(Component
-            .literal(spacing)
+            .literal("    ")
             .append(Component.translatable("gamerule.enrichmentTime"))
             .append(Component.literal(":"))
             .withStyle(ChatFormatting.GRAY)
         );
 
-        tooltip.add(Component.literal(spacing)
-            .append(Component.literal(" "))
-            .append(Component.literal(formatSeconds((enrichmentTime - blockEntity.getPersistentData().getInt("T")) / 4)))
+        tooltip.add(Component.literal("     ")
+            .append(Component.literal(WariumCreateTooltipHelper.formatSeconds(timeLeft)))
+            .append(Component.literal(timeLeftover > 0 ? (" + " + WariumCreateTooltipHelper.formatSeconds(timeLeftover)) : "").withStyle(ChatFormatting.DARK_GRAY))
             .withStyle(ChatFormatting.AQUA)
         );
 
         return true;
-    }
-
-    private static String formatSeconds(int totalSeconds) {
-        int minutes = totalSeconds / 60;
-        int seconds = totalSeconds % 60;
-        return String.format("%d:%02d", minutes, seconds);
     }
 }

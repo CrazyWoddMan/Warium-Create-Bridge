@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
-@Mixin(RefineryTowerBlockEntity.class)
+@Mixin(remap = false, value = RefineryTowerBlockEntity.class)
 public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInformation {
 
     @Unique
@@ -27,7 +27,7 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
     @Unique
     private FluidTank getOrCreateFluidTank() {
         if (fluidTank == null) {
-            final RefineryTowerBlockEntity blockEntity = (RefineryTowerBlockEntity)(Object)this;
+            RefineryTowerBlockEntity blockEntity = (RefineryTowerBlockEntity)(Object)this;
             fluidTank = new FluidTank(16000) {
                 @Override
                 public int fill(FluidStack resource, FluidAction action) {
@@ -45,12 +45,17 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
                 }
                 @Override
                 protected void onContentsChanged() {
+                    String fluidName = getFluidName(this.getFluid());
+                    
+                    if (!fluidName.isEmpty())
+                        blockEntity.getPersistentData().putString("Fluid", fluidName);
+                    
                     blockEntity.getPersistentData().putDouble("Level", this.getFluidAmount());
-                    blockEntity.getPersistentData().putString("Fluid", getFluidName(this.getFluid()));
                     blockEntity.setChanged();
                 }
             };
         }
+
         return fluidTank;
     }
 
@@ -60,8 +65,7 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
     @Inject(
         method = "getCapability",
         at = @At("HEAD"),
-        cancellable = true,
-        remap = false
+        cancellable = true
     )
     private void injectFluidCap(Capability<?> cap, Direction side, CallbackInfoReturnable<LazyOptional<Object>> cir) {
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
@@ -76,24 +80,36 @@ public abstract class RefineryTowerBlockEntityMixin implements IHaveGoggleInform
         double level = blockEntity.getPersistentData().getDouble("Level");
         String fluid = blockEntity.getPersistentData().getString("Fluid");
         FluidStack stack = FluidStack.EMPTY;
-        if ("Diesel".equals(fluid)) {
+        
+        if (fluid.equals("Diesel"))
             stack = new FluidStack(CrustyChunksModFluids.DIESEL.get(), (int)level);
-        } else if ("Kerosene".equals(fluid)) {
+
+        else if (fluid.equals("Kerosene"))
             stack = new FluidStack(CrustyChunksModFluids.KEROSENE.get(), (int)level);
-        } else if ("Oil".equals(fluid)) {
+
+        else if (fluid.equals("Oil"))
             stack = new FluidStack(CrustyChunksModFluids.OIL.get(), (int)level);
-        } else if ("Petrolium".equals(fluid)) {
+
+        else if (fluid.equals("Petrolium"))
             stack = new FluidStack(CrustyChunksModFluids.PETROLIUM.get(), (int)level);
-        }
+
         getOrCreateFluidTank().setFluid(stack);
     }
 
     @Unique
     private String getFluidName(FluidStack stack) {
-        if (stack.getFluid() == CrustyChunksModFluids.DIESEL.get()) return "Diesel";
-        if (stack.getFluid() == CrustyChunksModFluids.KEROSENE.get()) return "Kerosene";
-        if (stack.getFluid() == CrustyChunksModFluids.OIL.get()) return "Oil";
-        if (stack.getFluid() == CrustyChunksModFluids.PETROLIUM.get()) return "Petrolium";
+        if (stack.getFluid() == CrustyChunksModFluids.DIESEL.get())
+            return "Diesel";
+
+        if (stack.getFluid() == CrustyChunksModFluids.KEROSENE.get())
+            return "Kerosene";
+
+        if (stack.getFluid() == CrustyChunksModFluids.OIL.get())
+            return "Oil";
+            
+        if (stack.getFluid() == CrustyChunksModFluids.PETROLIUM.get())
+            return "Petrolium";
+
         return "";
     }
 
