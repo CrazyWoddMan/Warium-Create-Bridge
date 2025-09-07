@@ -5,23 +5,30 @@ import java.util.List;
 import com.jozufozu.flywheel.util.transform.TransformStack;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
+import com.simibubi.create.content.kinetics.motor.KineticScrollValueBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIconOptions;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
 import com.simibubi.create.foundation.gui.AllIcons;
 import com.simibubi.create.foundation.utility.AngleHelper;
 import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.VecHelper;
 
 import crazywoddman.warium_create.Config;
+import net.mcreator.valkyrienwarium.block.entity.VehicleControlNodeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
 
@@ -29,21 +36,54 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
         super(type, pos, state);
     }
 
-    private final double defaultStress = Config.SERVER.defaultStress.get();
+    private final int defaultStress = Config.SERVER.defaultStress.get();
     private final int defaultSpeed = Config.SERVER.defaultSpeed.get();
+    private final int maxThrottle = Config.SERVER.maxThrottle.get();
+    private final int kineticConverterReponse = Config.SERVER.kineticConverterReponse.get();
+    private final boolean converterSpeedControl = Config.SERVER.converterSpeedControl.get();
+    private int lastThrottle;
     public ScrollOptionBehaviour<RotationDirection> movementDirection;
+    public ScrollValueBehaviour generatedSpeed;
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
-        movementDirection = new ScrollOptionBehaviour<>(
-            RotationDirection.class,
-            Lang.translateDirect("contraptions.windmill.rotation_direction"),
-            this,
-            new ValueBox()
-        );
-        movementDirection.withCallback($ -> this.updateGeneratedRotation());
-        behaviours.add(movementDirection);
+
+        if (Config.SERVER.converterSpeedControl.get()) {
+            generatedSpeed = new KineticScrollValueBehaviour(
+                Lang.translateDirect("kinetics.creative_motor.rotation_speed"),
+                this,
+                new ValueBox()
+            );
+            generatedSpeed.between(-256, 256);
+            generatedSpeed.value = Config.SERVER.defaultSpeed.get() * 50;
+            generatedSpeed.withCallback(i -> this.updateGeneratedRotation());
+            behaviours.add(generatedSpeed);
+        } else {
+            movementDirection = new ScrollOptionBehaviour<>(
+                RotationDirection.class,
+                Lang.translateDirect("contraptions.windmill.rotation_direction"),
+                this,
+                new ValueBox()
+            );
+            movementDirection.withCallback(i -> this.updateGeneratedRotation());
+            behaviours.add(movementDirection);
+        }
+    }
+
+    @Override
+    protected void read(CompoundTag compound, boolean clientPacket) {
+        super.read(compound, clientPacket);
+
+        if (!Config.SERVER.converterSpeedControl.get() && compound.contains("ScrollValue")) {
+            int savedValue = compound.getInt("ScrollValue");
+            
+            if (savedValue < 0 || savedValue >= RotationDirection.values().length) {
+                compound.putInt("ScrollValue", 0);
+                if (movementDirection != null)
+                    movementDirection.setValue(0);
+            }
+        }
     }
 
     @Override
@@ -55,57 +95,101 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
     @Override
     public float getGeneratedSpeed() {
         float kineticPower = this.getPersistentData().getFloat("KineticPower");
-        if (kineticPower <= 0)
+
+        if (kineticPower <= 0 || getThrottle() == 0)
             return 0;
-        int sign = movementDirection.get() == RotationDirection.CLOCKWISE ? -1 : 1;
-        return convertToDirection(defaultSpeed / 50 * kineticPower * sign, getBlockState().getValue(ConverterIn.FACING));
+
+        float speed;
+
+        if (converterSpeedControl && generatedSpeed != null) 
+            speed = generatedSpeed.getValue();
+        else if (movementDirection != null) {
+            int sign = movementDirection.get() == RotationDirection.CLOCKWISE ? 1 : -1;
+            speed = defaultSpeed * sign * kineticPower;
+        } else
+            return 0;
+        
+        float result = convertToDirection(
+            speed / maxThrottle * getThrottle(), 
+            getBlockState().getValue(ConverterIn.FACING)
+        );
+        return result;
     }
 
     @Override
     public float calculateAddedStressCapacity() {
-        float speed = Math.abs(getGeneratedSpeed());
-        if (speed == 0) return 0;
-        return (float) (this.getPersistentData().getDouble("KineticPower") / 50 * defaultStress / speed);
+
+        if (speed == 0)
+            return 0;
+
+        float capacity = (float) defaultStress / 2;
+        lastCapacityProvided = capacity;
+
+        return capacity;
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (level == null || level.isClientSide) return;
+
+        if (level.isClientSide || level.getGameTime() % kineticConverterReponse != 0)
+            return;
 
         Direction facing = getBlockState().getValue(ConverterIn.FACING);
         BlockPos backPos = getBlockPos().relative(facing.getOpposite());
         BlockState backState = level.getBlockState(backPos);
         BlockEntity blockEntity = level.getBlockEntity(backPos);
-
-        double prevKP = this.getPersistentData().getDouble("KineticPower");
+        CompoundTag data = getPersistentData();
+        double prevKP = data.getDouble("KineticPower");
         double newKP = 0.0;
+        int throttle = getThrottle();
 
         if (blockEntity != null) {
-            var blockKey = backState.getBlock().builtInRegistryHolder().key().location();
+            ResourceLocation blockKey = ForgeRegistries.BLOCKS.getKey(backState.getBlock());
             boolean isWarium = blockKey != null && blockKey.getNamespace().equals("crusty_chunks");
             if (isWarium) {
                 DirectionProperty facingProp = null;
-                for (var prop : backState.getProperties()) {
-                    if (prop.getName().equals("facing") && prop instanceof DirectionProperty dp) {
-                        facingProp = dp;
+                for (Property<?> property : backState.getProperties()) {
+                    if (property.getName().equals("facing") && property instanceof DirectionProperty directionProperty) {
+                        facingProp = directionProperty;
                         break;
                     }
                 }
-                if (facingProp != null) {
-                    Direction wariumFacing = backState.getValue(facingProp);
-                    if (wariumFacing == facing) {
-                        newKP = blockEntity.getPersistentData().getDouble("KineticPower");
-                    }
-                }
+                if (facingProp != null && backState.getValue(facingProp) == facing)
+                    newKP = blockEntity.getPersistentData().getDouble("KineticPower");
             }
         }
 
-        if (prevKP != newKP) {
-            this.getPersistentData().putDouble("KineticPower", newKP);
-            this.networkDirty = true;
+        if (prevKP != newKP || throttle != lastThrottle) {
+            data.putDouble("KineticPower", newKP);
             updateGeneratedRotation();
+            lastThrottle = throttle;
         }
+    }
+
+    private int getThrottle() {
+        CompoundTag data = getPersistentData();
+
+        if (data.contains("ControlX")) {
+            BlockEntity controlNode =
+                level != null ?
+                level.getBlockEntity(new BlockPos(
+                    data.getInt("ControlX"),
+                    data.getInt("ControlY"),
+                    data.getInt("ControlZ")
+                ))
+                : null;
+
+            if (controlNode != null && controlNode instanceof VehicleControlNodeBlockEntity) {
+                int throttle = controlNode.getPersistentData().getInt("Throttle");
+                String key = data.getString("Key");
+
+                if (key.isEmpty() || (throttle > 0 && key.equals("Throttle+")) || (throttle < 0 && key.equals("Throttle-")))
+                    return Math.abs(throttle);
+            }
+        }
+        
+        return maxThrottle;
     }
 
     class ValueBox extends ValueBoxTransform.Sided {
@@ -115,10 +199,11 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
         }
 
         @Override
-        public Vec3 getLocalOffset(BlockState state) {
-            Direction facing = state.getValue(ConverterIn.FACING);
-            return super.getLocalOffset(state)
-                .add(Vec3.atLowerCornerOf(facing.getNormal()).scale(2 / 16f));
+        public Vec3 getLocalOffset(BlockState state) {     
+            return super.getLocalOffset(state).add(Vec3
+                .atLowerCornerOf(state.getValue(ConverterIn.FACING).getNormal())
+                .scale(2 / 16f)
+            );
         }
 
         @Override
@@ -136,8 +221,10 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
         @Override
         protected boolean isSideActive(BlockState state, Direction direction) {
             Direction facing = state.getValue(ConverterIn.FACING);
+            
             if (facing.getAxis() != Direction.Axis.Y && direction == Direction.DOWN)
                 return false;
+
             return direction.getAxis() != facing.getAxis();
         }
     }
