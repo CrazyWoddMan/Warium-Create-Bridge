@@ -1,0 +1,18 @@
+{
+  "type": "warium_create:coloring",
+  "ingredients": [
+    {
+      "tag": "warium_create:slab_wings"
+    },
+    {
+      "item": "minecraft:{color}_dye"
+    },
+    {
+      "fluid": "colored_water:{color}_fluid",
+      "amount": 10
+    }
+  ],
+  "result": {
+    "item": "valkyrien_warium:slab_wing_{color}"
+  }
+}

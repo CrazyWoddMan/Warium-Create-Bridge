@@ -1,0 +1,18 @@
+{
+  "type": "warium_create:coloring",
+  "ingredients": [
+    {
+      "tag": "warium_create:steel_optics"
+    },
+    {
+      "item": "minecraft:{color}_dye"
+    },
+    {
+      "fluid": "colored_water:{color}_fluid",
+      "amount": 10
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:{color}_armor_optic"
+  }
+}

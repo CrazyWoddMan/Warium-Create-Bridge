@@ -1,0 +1,18 @@
+{
+  "type": "warium_create:coloring",
+  "ingredients": [
+    {
+      "tag": "warium_create:aluminum_plating_slabs"
+    },
+    {
+      "item": "minecraft:{color}_dye"
+    },
+    {
+      "fluid": "colored_water:{color}_fluid",
+      "amount": 10
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:aluminum_plating_slab_{color}"
+  }
+}
