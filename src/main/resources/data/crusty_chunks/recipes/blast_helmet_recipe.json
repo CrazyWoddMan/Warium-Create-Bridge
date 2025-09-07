@@ -8,7 +8,7 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:leather"
+      "tag": "forge:leather"
     },
     "b": {
       "item": "crusty_chunks:reinforced_glass"
@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:blast_armor_helmet",
-    "count": 1
+    "item": "crusty_chunks:blast_armor_helmet"
   }
 }

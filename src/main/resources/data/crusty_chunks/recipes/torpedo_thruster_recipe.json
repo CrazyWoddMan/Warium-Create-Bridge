@@ -11,7 +11,7 @@
       "tag": "forge:plates/steel"
     },
     "b": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "c": {
       "item": "crusty_chunks:electric_motor"
@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:torpedo_thruster",
-    "count": 1
+    "item": "crusty_chunks:torpedo_thruster"
   }
 }

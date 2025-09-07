@@ -14,7 +14,7 @@
       "item": "crusty_chunks:steel_tube"
     },
     "c": {
-      "tag": "forge:inogts/steel"
+      "tag": "forge:ingots/steel"
     },
     "d": {
       "item": "crusty_chunks:engine_component"
@@ -27,7 +27,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:engine_cyllinder",
-    "count": 1
+    "item": "crusty_chunks:engine_cyllinder"
   }
 }

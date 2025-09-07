@@ -17,7 +17,7 @@
       "tag": "forge:plates/steel"
     },
     "d": {
-      "item": "crusty_chunks:steel_ingot"
+      "tag": "forge:ingots/steel"
     },
     "e": {
       "item": "crusty_chunks:mg_receiver"
@@ -27,7 +27,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:machine_gun",
-    "count": 1
+    "item": "crusty_chunks:machine_gun"
   }
 }

@@ -1,0 +1,39 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/lead"
+    },
+    {
+      "tag": "forge:dusts/aluminum"
+    },
+    {
+      "tag": "forge:dusts/iron"
+    },
+    {
+      "amount": 1000,
+      "fluidTag": "forge:gasoline"
+    },
+    {
+      "tag": "forge:gunpowder"
+    },
+    {
+      "tag": "forge:dusts/iron"
+    },
+    {
+      "tag": "forge:gunpowder"
+    },
+    {
+      "tag": "forge:dusts/aluminum"
+    },
+    {
+      "tag": "forge:dusts/aluminum"
+    }
+  ],
+  "results": [
+    {
+      "item": "crusty_chunks:fire_agent",
+      "count": 4
+    }
+  ]
+}

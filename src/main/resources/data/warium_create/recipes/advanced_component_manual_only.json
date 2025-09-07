@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:wires/steel"
+    },
+    {
+      "item": "crusty_chunks:steel_component"
+    },
+    {
+      "item": "crusty_chunks:bored_component"
+    },
+    {
+      "item": "crusty_chunks:electric_motor"
+    },
+    {
+      "item": "crusty_chunks:copper_coil"
+    },
+    {
+      "tag": "forge:buckets/heavy_oil"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:advanced_component",
+    "count": 2
+  }
+}

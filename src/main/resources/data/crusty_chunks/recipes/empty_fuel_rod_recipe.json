@@ -18,7 +18,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:empty_fuel_rods",
-    "count": 1
+    "item": "crusty_chunks:empty_fuel_rods"
   }
 }

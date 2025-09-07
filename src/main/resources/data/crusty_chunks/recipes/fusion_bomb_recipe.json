@@ -8,7 +8,7 @@
   ],
   "key": {
     "a": {
-      "tag": "forge:blocks/lead"
+      "tag": "forge:storage_blocks/lead"
     },
     "b": {
       "item": "crusty_chunks:advanced_component"
@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:fusion_bomb",
-    "count": 1
+    "item": "crusty_chunks:fusion_bomb"
   }
 }

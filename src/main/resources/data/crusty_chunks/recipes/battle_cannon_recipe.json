@@ -14,7 +14,7 @@
       "tag": "forge:plates/steel"
     },
     "c": {
-      "tag": "forge:blocks/steel"
+      "tag": "forge:storage_blocks/steel"
     },
     "d": {
       "item": "crusty_chunks:firing_pin"
@@ -27,7 +27,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:battle_cannon_breech",
-    "count": 1
+    "item": "crusty_chunks:battle_cannon_breech"
   }
 }

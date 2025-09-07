@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "volatile",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "crusty_chunks:volatile_dust"
+    },
+    {
+      "item": "crusty_chunks:volatile_dust"
+    },
+    {
+      "item": "crusty_chunks:volatile_dust"
+    },
+    {
+      "item": "crusty_chunks:volatile_dust"
+    }
+  ],
+  "result": {
+    "item": "crusty_chunks:large_volatile_pile"
+  }
+}

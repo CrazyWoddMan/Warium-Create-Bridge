@@ -8,7 +8,7 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:diamond"
+      "tag": "forge:gems/diamond"
     },
     "b": {
       "tag": "forge:plates/steel"
@@ -27,7 +27,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:hand_drill",
-    "count": 1
+    "item": "crusty_chunks:hand_drill"
   }
 }

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "efe"
+  ],
+  "key": {
+    "a": {
+      "tag": "warium_create:steel_plating"
+    },
+    "b": {
+      "item": "crusty_chunks:advanced_component"
+    },
+    "c": {
+      "item": "crusty_chunks:copper_coil"
+    },
+    "d": {
+      "item": "crusty_chunks:reactioncomponent"
+    },
+    "e": {
+      "tag": "forge:storage_blocks/aluminum"
+    },
+    "f": {
+      "item": "crusty_chunks:tech_component"
+    }
+  },
+  "result": {
+    "item": "crusty_chunks:reaction_chamber"
+  }
+}

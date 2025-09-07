@@ -10,7 +10,7 @@
       "item": "crusty_chunks:steel_component"
     },
     "b": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "c": {
       "tag": "forge:plates/aluminum"
@@ -20,7 +20,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:empty_missile_hardpoint",
-    "count": 1
+    "item": "crusty_chunks:empty_missile_hardpoint"
   }
 }

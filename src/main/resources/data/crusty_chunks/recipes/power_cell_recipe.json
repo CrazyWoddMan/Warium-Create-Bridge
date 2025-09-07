@@ -14,17 +14,16 @@
       "item": "crusty_chunks:bent_component"
     },
     "c": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "d": {
       "tag": "forge:ingots/lead"
     },
     "e": {
-      "tag": "forge:dusts/sulfur"
+      "tag": "warium_create:power_cell_core"
     }
   },
   "result": {
-    "item": "crusty_chunks:power_cell",
-    "count": 1
+    "item": "crusty_chunks:power_cell"
   }
 }

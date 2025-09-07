@@ -14,7 +14,7 @@
       "tag": "forge:plates/steel"
     },
     "c": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     }
   },
   "result": {

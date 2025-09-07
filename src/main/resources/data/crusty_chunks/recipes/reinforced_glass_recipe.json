@@ -11,11 +11,10 @@
       "tag": "forge:plates/aluminum"
     },
     "b": {
-      "item": "minecraft:glass"
+      "tag": "forge:glass"
     }
   },
   "result": {
-    "item": "crusty_chunks:reinforced_glass",
-    "count": 1
+    "item": "crusty_chunks:reinforced_glass"
   }
 }

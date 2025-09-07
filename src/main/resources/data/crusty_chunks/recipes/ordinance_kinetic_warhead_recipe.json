@@ -8,7 +8,7 @@
   ],
   "key": {
     "a": {
-      "item": "crusty_chunks:steel_ingot"
+      "tag": "forge:ingots/steel"
     },
     "b": {
       "tag": "forge:plates/steel"
@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:ordinance_kinetic_head",
-    "count": 1
+    "item": "crusty_chunks:ordinance_kinetic_head"
   }
 }

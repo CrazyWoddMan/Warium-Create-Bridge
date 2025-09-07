@@ -20,11 +20,10 @@
       "item": "crusty_chunks:steel_spring"
     },
     "e": {
-      "tag": "forge:blocks/steel"
+      "tag": "forge:storage_blocks/steel"
     }
   },
   "result": {
-    "item": "crusty_chunks:autocannon",
-    "count": 1
+    "item": "crusty_chunks:autocannon"
   }
 }

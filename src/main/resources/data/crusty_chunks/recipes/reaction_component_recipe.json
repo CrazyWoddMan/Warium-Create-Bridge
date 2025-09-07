@@ -17,11 +17,10 @@
       "item": "crusty_chunks:uranium_neural_ingot"
     },
     "d": {
-      "tag": "forge:blocks/nickel"
+      "tag": "forge:storage_blocks/nickel"
     }
   },
   "result": {
-    "item": "crusty_chunks:reactioncomponent",
-    "count": 1
+    "item": "crusty_chunks:reactioncomponent"
   }
 }

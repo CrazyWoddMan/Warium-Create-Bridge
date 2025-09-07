@@ -8,7 +8,7 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:diamond_block"
+      "tag": "forge:storage_blocks/diamond"
     },
     "b": {
       "item": "crusty_chunks:steel_tube"
@@ -24,7 +24,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:block_miner",
-    "count": 1
+    "item": "crusty_chunks:block_miner"
   }
 }

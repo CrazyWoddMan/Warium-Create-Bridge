@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "crusty_chunks:energy_battery",
-    "count": 1
+    "item": "crusty_chunks:energy_battery"
   }
 }

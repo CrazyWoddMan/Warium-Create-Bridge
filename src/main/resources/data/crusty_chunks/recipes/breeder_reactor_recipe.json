@@ -17,14 +17,13 @@
       "item": "crusty_chunks:reactioncomponent"
     },
     "d": {
-      "tag": "forge:blocks/aluminum"
+      "tag": "forge:storage_blocks/aluminum"
     },
     "e": {
       "item": "crusty_chunks:shielding_component"
     }
   },
   "result": {
-    "item": "crusty_chunks:breeder_reactor_interface",
-    "count": 1
+    "item": "crusty_chunks:breeder_reactor_interface"
   }
 }
