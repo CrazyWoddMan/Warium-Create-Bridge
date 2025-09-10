@@ -10,10 +10,10 @@ import java.util.List;
 public class WariumCreateTooltipHelper {
     
     /**
-     * Adds Forge Energy tooltip to Warium BlockEntities
+     * Adds Forge Forge Energy capacity to the {@code tooltip}
      * @param tooltip
-     * @param blockEntity
-     * @param blockEntity
+     * @param blockEntity this BlockEntity
+     * @param energyToFErate Energy to Forge Energy converion ratio
      */
     public static void addEnergyTooltip(List<Component> tooltip, BlockEntity blockEntity, int energyToFErate) {
         CompoundTag data = blockEntity.getPersistentData();
