@@ -1,18 +1,17 @@
 package crazywoddman.warium_create.block.converter;
 
 import crazywoddman.warium_create.Config;
+import crazywoddman.warium_create.util.WariumCreateUtil;
 
 import com.simibubi.create.content.kinetics.KineticNetwork;
 import com.simibubi.create.content.kinetics.base.IRotate.SpeedLevel;
 import com.simibubi.create.content.kinetics.gauge.SpeedGaugeBlockEntity;
+import com.simibubi.create.foundation.utility.Color;
 import com.simibubi.create.foundation.utility.Lang;
 
-import net.mcreator.valkyrienwarium.block.entity.VehicleControlNodeBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -29,52 +28,57 @@ public class ConverterOutBlockEntity extends SpeedGaugeBlockEntity {
     private final int maxThrottle = Config.SERVER.maxThrottle.get();
     private int lastThrottle;
 
-    @Override
-    public void tick() {
-        super.tick();
-        if (level == null || level.isClientSide) return;
-
-        int throttle = getThrottle();
-        double kineticPower = Math.round(Math.abs(getSpeed()) / maxThrottle * throttle / 2);
-        if (throttle != lastThrottle) {
-            KineticNetwork network = getOrCreateNetwork();
-            if (network != null) {
-                network.updateStressFor(this, calculateStressApplied());
-            }
-            lastThrottle = throttle;
-        }
-        getPersistentData().putDouble("KineticPower", kineticPower);
+    private void updateKineticPower() {
+        getPersistentData().putDouble(
+            "KineticPower",
+            (double) Math.round(Math.abs(getSpeed()) / this.defaultSpeed / this.maxThrottle * this.lastThrottle * 10) / 10
+        );
         sendData();
     }
 
-    private int getThrottle() {
-        CompoundTag data = getPersistentData();
-
-        if (data.contains("ControlX")) {
-            BlockEntity controlNode =
-                level != null ?
-                level.getBlockEntity(new BlockPos(
-                    data.getInt("ControlX"),
-                    data.getInt("ControlY"),
-                    data.getInt("ControlZ")
-                ))
-                : null;
-
-            if (controlNode != null && controlNode instanceof VehicleControlNodeBlockEntity) {
-                int throttle = controlNode.getPersistentData().getInt("Throttle");
-                String key = data.getString("Key");
-
-                if (key.isEmpty() || (throttle > 0 && key.equals("Throttle+")) || (throttle < 0 && key.equals("Throttle-")))
-                    return Math.abs(throttle);
-            }
-        }
-        
-        return maxThrottle;
+    private void updateDialTarget() {
+        this.dialTarget = getDialTarget(getSpeed() / this.maxThrottle * lastThrottle);
     }
 
     @Override
+    public void tick() {
+        super.tick();
+
+        int throttle = Math.abs(WariumCreateUtil.getThrottle(this, this.maxThrottle));
+
+        if (this.lastThrottle != throttle) {
+            this.lastThrottle = throttle;
+
+            if (this.level.isClientSide)
+                return;
+
+            KineticNetwork network = getOrCreateNetwork();
+            
+            if (network != null)
+                network.updateStressFor(this, calculateStressApplied());
+
+            this.dialTarget = getDialTarget(getSpeed() / this.maxThrottle * throttle);
+            updateDialTarget();
+            updateKineticPower();
+        }
+
+    }
+
+    @Override
+	public void onSpeedChanged(float prevSpeed) {
+		super.onSpeedChanged(prevSpeed);
+
+		updateDialTarget();
+        this.color = Color
+            .mixColors(SpeedLevel.of(this.speed)
+			.getColor(), 0xffffff, .25f);
+        updateKineticPower();
+        setChanged();
+	}
+
+    @Override
     public float calculateStressApplied() {
-        float impact = (float) (defaultStress / defaultSpeed / maxThrottle * getThrottle());
+        float impact = (float) this.defaultStress / this.defaultSpeed / this.maxThrottle * this.lastThrottle;
         this.lastStressApplied = impact;
 		return impact;
     }
@@ -87,7 +91,7 @@ public class ConverterOutBlockEntity extends SpeedGaugeBlockEntity {
 		Lang.translate("gui.speedometer.title")
 			.style(ChatFormatting.GRAY)
 			.forGoggles(tooltip);
-		SpeedLevel.getFormattedSpeedText(Math.abs(getSpeed()) / maxThrottle * getThrottle(), overStressed)
+		SpeedLevel.getFormattedSpeedText(getSpeed() / this.maxThrottle * this.lastThrottle, this.overStressed)
 			.forGoggles(tooltip);
         addStressImpactStats(tooltip, calculateStressApplied());
 

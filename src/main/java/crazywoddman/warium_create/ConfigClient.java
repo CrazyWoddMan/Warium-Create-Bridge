@@ -94,7 +94,7 @@ public class ConfigClient {
                     .setTooltip(Component.literal("What Rotation Speed is equivalent to 1 Kinetic Power unit"))
                     .setDefaultValue(Config.SERVER.defaultSpeed.getDefault())
                     .setMin(1)
-                    .setMax(256)
+                    .setMax(5)
                     .setSaveConsumer(newValue -> {
                         Config.SERVER.defaultSpeed.set(newValue);
                         Config.SERVER_SPEC.save();
@@ -111,6 +111,20 @@ public class ConfigClient {
                     .setDefaultValue(Config.SERVER.converterSpeedControl.getDefault())
                     .setSaveConsumer(newValue -> {
                         Config.SERVER.converterSpeedControl.set(newValue);
+                        Config.SERVER_SPEC.save();
+                    })
+                    .build()
+            );
+            category.addEntry(
+                entryBuilder
+                    .startBooleanToggle(
+                        Component.literal("Throttle Rotation Direction Reverse"),
+                        Config.SERVER.throttleToRotationDirection.get()
+                    )
+                    .setTooltip(Component.literal("Whether negative throttle values should reverse rotation direction"))
+                    .setDefaultValue(Config.SERVER.throttleToRotationDirection.getDefault())
+                    .setSaveConsumer(newValue -> {
+                        Config.SERVER.throttleToRotationDirection.set(newValue);
                         Config.SERVER_SPEC.save();
                     })
                     .build()
@@ -164,7 +178,7 @@ public class ConfigClient {
                         Config.SERVER.minThrottle.get()
                     )
                     .setDefaultValue(Config.SERVER.minThrottle.getDefault())
-                    .setMax(0)
+                    .setMax(-1)
                     .setSaveConsumer(newValue -> {
                         Config.SERVER.minThrottle.set(newValue);
                         Config.SERVER_SPEC.save();
@@ -178,7 +192,7 @@ public class ConfigClient {
                         Config.SERVER.maxThrottle.get()
                     )
                     .setDefaultValue(Config.SERVER.maxThrottle.getDefault())
-                    .setMin(0)
+                    .setMin(1)
                     .setSaveConsumer(newValue -> {
                         Config.SERVER.maxThrottle.set(newValue);
                         Config.SERVER_SPEC.save();

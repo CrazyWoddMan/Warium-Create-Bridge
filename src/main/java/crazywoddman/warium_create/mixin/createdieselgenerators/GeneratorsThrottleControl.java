@@ -4,16 +4,23 @@ import com.jesz.createdieselgenerators.blocks.DieselGeneratorBlock;
 import com.jesz.createdieselgenerators.blocks.entity.DieselGeneratorBlockEntity;
 import com.jesz.createdieselgenerators.blocks.entity.HugeDieselEngineBlockEntity;
 import com.jesz.createdieselgenerators.blocks.entity.LargeDieselGeneratorBlockEntity;
+import com.simibubi.create.content.contraptions.bearing.WindmillBearingBlockEntity;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
 
-import net.mcreator.valkyrienwarium.block.entity.VehicleControlNodeBlockEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
+import crazywoddman.warium_create.Config;
+import crazywoddman.warium_create.util.WariumCreateUtil;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(
     value = {
@@ -25,45 +32,87 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 )
 public class GeneratorsThrottleControl {
 
+    @Unique
+    private boolean lastSignal;
+
+    @Unique
+    private Integer throttle;
+
+    private final boolean throttleToRotationDirection = Config.SERVER.throttleToRotationDirection.get();
+
+    @Inject(
+        method = "getGeneratedSpeed",
+        at = @At("RETURN"),
+        cancellable = true,
+        require = 0
+    )
+    private void injectReturn(CallbackInfoReturnable<Float> cir) {
+        float originalValue = cir.getReturnValue();
+
+        if (originalValue != 0.0F && this.throttleToRotationDirection && this.throttle != null && this.throttle < 0)
+            cir.setReturnValue(-1 * originalValue);
+
+    }
+
+    @Redirect(
+        method = "tick",
+        at = @At(
+            value = "FIELD",
+            target = "Lcom/jesz/createdieselgenerators/blocks/entity/HugeDieselEngineBlockEntity;movementDirection:Lcom/simibubi/create/foundation/blockEntity/behaviour/scrollValue/ScrollOptionBehaviour;",
+            opcode = Opcodes.GETFIELD
+        ),
+        require = 0
+    )
+    private ScrollOptionBehaviour<WindmillBearingBlockEntity.RotationDirection> redirectMovementDirection(HugeDieselEngineBlockEntity instance) {
+        return new ScrollOptionBehaviour<WindmillBearingBlockEntity.RotationDirection>(
+            WindmillBearingBlockEntity.RotationDirection.class,
+            null, instance, null
+        ) {
+            @Override
+            public WindmillBearingBlockEntity.RotationDirection get() {
+                WindmillBearingBlockEntity.RotationDirection originalDirection = instance.movementDirection.get();
+                
+                if (throttleToRotationDirection && throttle != null && throttle < 0)
+                    return originalDirection == WindmillBearingBlockEntity.RotationDirection.CLOCKWISE 
+                        ? WindmillBearingBlockEntity.RotationDirection.COUNTER_CLOCKWISE
+                        : WindmillBearingBlockEntity.RotationDirection.CLOCKWISE;
+                
+                return originalDirection;
+            }
+        };
+    }
+
     @Inject(
         method = "tick",
-        at = @At("HEAD"),
-        remap = false
+        at = @At("HEAD")
     )
     private void throttleControl(CallbackInfo callbackInfo) {
-        BlockEntity self = (BlockEntity) (Object) this;
-        CompoundTag data = self.getPersistentData();
-        
-        if (data.contains("ControlX")) {
-            BlockEntity controlNode = self.getLevel().getBlockEntity(
-                BlockPos.containing(
-                    data.getInt("ControlX"),
-                    data.getInt("ControlY"),
-                    data.getInt("ControlZ")
-                )
-            );
+        BlockEntity blockEntity = (BlockEntity) (Object) this;
 
-            if (controlNode != null && controlNode instanceof VehicleControlNodeBlockEntity) {
-                int throttle = controlNode.getPersistentData().getInt("Throttle");
-                String key = data.getString("Key");
-                boolean powered = (throttle == 0) || (key == "Throttle+" && throttle < 0) || (key == "Throttle-" && throttle > 0);
+        if (blockEntity.getLevel().getGameTime() % 10 == 0) {
+            this.lastSignal = blockEntity.getLevel().hasNeighborSignal(blockEntity.getBlockPos());
+            boolean oldPowered = blockEntity.getBlockState().getValue(DieselGeneratorBlock.POWERED);
+            boolean powered = this.lastSignal;
 
-                if (self.getBlockState().getValue(DieselGeneratorBlock.POWERED) != powered) {
-                    self.getLevel().setBlock(
-                        self.getBlockPos(),
-                        self.getBlockState().setValue(
-                            DieselGeneratorBlock.POWERED,
-                            powered
-                        ),
-                        3
-                    );
-                    
-                    if (self instanceof GeneratingKineticBlockEntity)
-                        ((GeneratingKineticBlockEntity) self).updateGeneratedRotation();
-                }
+            if (!this.lastSignal) {
+                this.throttle = WariumCreateUtil.getThrottle(blockEntity, null);
+                if (this.throttle != null)
+                    powered = this.throttle == 0;
+            }
+
+            if (oldPowered != powered) {
+                blockEntity.getLevel().setBlock(
+                    blockEntity.getBlockPos(),
+                    blockEntity.getBlockState().setValue(
+                        DieselGeneratorBlock.POWERED,
+                        powered
+                    ),
+                    Block.UPDATE_CLIENTS
+                );
+
+                if (blockEntity instanceof GeneratingKineticBlockEntity genBlockEntity)
+                    genBlockEntity.updateGeneratedRotation();
             }
         }
-
-        return;
     }
 }
