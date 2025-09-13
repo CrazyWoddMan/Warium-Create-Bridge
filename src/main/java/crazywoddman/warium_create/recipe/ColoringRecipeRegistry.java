@@ -32,7 +32,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
-@EventBusSubscriber(modid = WariumCreate.ID, bus = EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = WariumCreate.MODID, bus = EventBusSubscriber.Bus.FORGE)
 public class ColoringRecipeRegistry {
     
     public static final List<ColoringRecipe> cachedRecipes = new ArrayList<>();

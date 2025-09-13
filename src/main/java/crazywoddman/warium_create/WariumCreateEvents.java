@@ -10,7 +10,7 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = WariumCreate.ID, bus = EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = WariumCreate.MODID, bus = EventBusSubscriber.Bus.FORGE)
 public class WariumCreateEvents {
     @SubscribeEvent
     public static void onFurnaceFuelBurnTime(FurnaceFuelBurnTimeEvent event) {

@@ -15,7 +15,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import java.util.List;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -31,13 +30,9 @@ import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
 )
 public class ConsumingBlockEntityMixin implements IHaveGoggleInformation {
 
-    @Unique
     private final LazyOptional<IEnergyStorage> energyStorage = LazyOptional.of(this::getEnergyStorage);
-
-    @Unique
     private final int energyToFErate = Config.SERVER.energyToFErate.get();
 
-    @Unique
     private IEnergyStorage getEnergyStorage() {
         BlockEntity blockEntity = (BlockEntity)(Object)this;
         return new IEnergyStorage() {

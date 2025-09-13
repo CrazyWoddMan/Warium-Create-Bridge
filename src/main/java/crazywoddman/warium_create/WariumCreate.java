@@ -16,10 +16,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(WariumCreate.ID)
+@Mod(WariumCreate.MODID)
 public class WariumCreate {
-    public static final String ID = "warium_create";
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ID);
+    public static final String MODID = "warium_create";
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
     static {
 		REGISTRATE.setTooltipModifierFactory(item -> {
 			return new ItemDescription.Modifier(item, Palette.STANDARD_CREATE)

@@ -8,7 +8,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = WariumCreate.ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = WariumCreate.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class CreativeTabs {
 
     @SubscribeEvent

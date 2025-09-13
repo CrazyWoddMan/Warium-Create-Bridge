@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.Minecraft;
 
-@EventBusSubscriber(modid = WariumCreate.ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = WariumCreate.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ConfigClient {
     @SuppressWarnings("removal")
     @SubscribeEvent

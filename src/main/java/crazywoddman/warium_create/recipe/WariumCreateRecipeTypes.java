@@ -20,7 +20,7 @@ public enum WariumCreateRecipeTypes {
 
     WariumCreateRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
         String name = name().toLowerCase();
-        this.id = ResourceLocation.fromNamespaceAndPath(WariumCreate.ID, name);
+        this.id = ResourceLocation.fromNamespaceAndPath(WariumCreate.MODID, name);
         
         this.serializerObject = Recipes.SERIALIZER_REGISTER.register(name, serializerSupplier);
         this.typeObject = Recipes.TYPE_REGISTER.register(name, 
@@ -44,9 +44,9 @@ public enum WariumCreateRecipeTypes {
 
     public static class Recipes {
         public static final DeferredRegister<RecipeSerializer<?>> SERIALIZER_REGISTER = 
-            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, WariumCreate.ID);
+            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, WariumCreate.MODID);
             
         public static final DeferredRegister<RecipeType<?>> TYPE_REGISTER = 
-            DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, WariumCreate.ID);
+            DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, WariumCreate.MODID);
     }
 }

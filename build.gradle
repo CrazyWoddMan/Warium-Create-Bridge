@@ -79,13 +79,6 @@ repositories {
         }
     }
     maven {
-        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-        content {
-            includeGroupByRegex("software\\.bernie.*")
-            includeGroup("com.eliotlash.mclib")
-        }
-    }
-    maven {
         url "https://cursemaven.com"
         content {
             includeGroup "curse.maven"
@@ -114,16 +107,14 @@ dependencies {
     compileOnly fg.deobf("curse.maven:createaddition-439890:6084982")
     compileOnly fg.deobf("blank:Warium-1.1.0:1.1.0")
     compileOnly fg.deobf("blank:WariumVS-0.0.10:0.0.10")
-    compileOnly fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.7.3")
-    compileOnly("com.eliotlash.mclib:mclib:20")
     compileOnly(fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.112"))
     compileOnly(fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.112"))
     compileOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
 }
 
 mixin {
-    add sourceSets.main, 'mixins.warium_create.refmap.json'
-    config 'mixins.warium_create.json'
+    add sourceSets.main, 'mixins.' + mod_id + '.refmap.json'
+    config 'mixins.' + mod_id + '.json'
 
     debug.verbose = true
     debug.export = true
@@ -146,6 +137,8 @@ tasks.named('processResources', ProcessResources).configure {
 }
 
 tasks.named('jar', Jar).configure {
+    dependsOn 'cleanLibs'
+    
     manifest {
         attributes([
                 'Specification-Title'     : mod_id,
@@ -166,12 +159,16 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ["-Xlint:-removal"]
 }
 
+tasks.register('cleanLibs', Delete) {
+    delete fileTree(dir: "$buildDir/libs", include: '*.jar')
+}
+
 tasks.register('copyModJar', Copy) {
     dependsOn build
     from("$buildDir/libs/") {
         include '*.jar'
     }
-    into 'D:/ModrinthApp/profiles/tacz_only/mods'
+    into 'D:/ModrinthApp/profiles/tests/mods'
 }
 
 build.finalizedBy(copyModJar)
