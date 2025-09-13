@@ -39,7 +39,10 @@ public class SoapWashableHelperMixin {
         List<String> original = instance.get();
         List<String> extended = ColoringRecipeRegistry.getPatternsForSoapBlacklist();
 
-        return extended.size() > 0 ? original.addAll(extended) : original;
+        if (extended.size() > 0)
+            original.addAll(extended);
+        
+        return original;
     }
 
     @Redirect(

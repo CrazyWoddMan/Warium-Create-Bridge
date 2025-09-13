@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import crazywoddman.warium_create.recipe.ColoringRecipeRegistry;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -25,9 +24,11 @@ public class SpecialRecipeDisplaysMixin {
     )
     private static Object redirectSoapBlacklistGet(Supplier<List<String>> instance) {
         List<String> original = instance.get();
-        List<String> extended = new ArrayList<>(original);
-        extended.addAll(ColoringRecipeRegistry.getPatternsForSoapBlacklist());
+        List<String> extended = ColoringRecipeRegistry.getPatternsForSoapBlacklist();
 
-        return extended;
+        if (extended.size() > 0)
+            original.addAll(extended);
+        
+        return original;
     }
 }
