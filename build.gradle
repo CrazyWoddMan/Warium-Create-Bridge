@@ -1,13 +1,8 @@
-buildscript {
-    repositories {
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
-    }
-}
-
 plugins {
     id 'java-library'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
+    id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = mod_version
@@ -118,6 +113,25 @@ mixin {
 
     debug.verbose = true
     debug.export = true
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "warium-create"
+    versionName = mod_name + " " + version
+    versionType = "release"
+    uploadFile = jar
+    gameVersions = [minecraft_version]
+    dependencies {
+        required.project "warium"
+        required.version "create", "1.20.1-0.5.1.j"
+        optional.project "valkyrien-warium"
+        optional.project "coloredwater"
+        optional.version "supplementaries", "1.20-3.1.18"
+        optional.version "create-tfmg", "0.9.3-1.20.1"
+        optional.version "createaddition", "1.20.1-1.2.5"
+        optional.version "create-diesel-generators", "1.20.1-1.2i"
+    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
