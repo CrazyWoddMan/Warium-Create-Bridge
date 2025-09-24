@@ -48,7 +48,6 @@ public class ConverterInBlockEntity extends GeneratingKineticBlockEntity {
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
-        System.out.println("addBehaviours called");
         this.converterSpeedControl = Config.SERVER.converterSpeedControl.get();
 
         if (this.converterSpeedControl) {

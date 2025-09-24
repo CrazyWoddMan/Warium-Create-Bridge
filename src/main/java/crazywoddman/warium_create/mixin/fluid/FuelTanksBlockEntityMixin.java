@@ -7,15 +7,16 @@ import net.mcreator.crustychunks.block.entity.FuelTankInputBlockEntity;
 import net.mcreator.crustychunks.block.entity.FuelTankModuleBlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.network.chat.Component;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -49,56 +50,38 @@ public abstract class FuelTanksBlockEntityMixin implements IHaveGoggleInformatio
     @Unique
     private boolean isAllowedFluid(FluidStack fluidStack) {
 
-        if (fluidStack.isEmpty())
-            return false;
+        if (fluidStack != null && !fluidStack.isEmpty()) {
+            String fuelType = "";
+            Fluid fluid = fluidStack.getFluid();
 
-        BlockEntity self = (BlockEntity) (Object) this;
-        String fluidPath = ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).getPath();
-        Fluid fluid = fluidStack.getFluid();
-        String fuelType = "";
+            if (fluid != null) {
+                String path = ForgeRegistries.FLUIDS.getKey(fluid).getPath();
+                if (
+                    path.equals("kerosene") ||
+                    ForgeRegistries.FLUIDS
+                        .tags()
+                        .getTag(FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", "kerosene")))
+                        .contains(fluid)
+                ) 
+                    fuelType = "Kerosene";
 
-        if (
-            fluidPath.equals("kerosene") ||
-            ForgeRegistries.FLUIDS
-                .tags()
-                .getTag(FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", "kerosene")))
-                .contains(fluid)
-        ) 
-            fuelType = "Kerosene";
+                else if (
+                    path.equals("diesel") ||
+                    ForgeRegistries.FLUIDS
+                        .tags()
+                        .getTag(FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", "diesel")))
+                        .contains(fluid)
+                )
+                    fuelType = "Diesel";
+            
+                if (!fuelType.isEmpty()) {
+                    ((BlockEntity) (Object) this).getPersistentData().putString("FuelType", fuelType);
+                    return true;
+                }
+            }
+        }
 
-        else if (
-            fluidPath.equals("diesel") ||
-            ForgeRegistries.FLUIDS
-                .tags()
-                .getTag(FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", "diesel")))
-                .contains(fluid)
-        )
-            fuelType = "Diesel";
-
-        else if (
-            fluidPath.equals("oil") ||
-            ForgeRegistries.FLUIDS
-                .tags()
-                .getTag(FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", "heavy_oil")))
-                .contains(fluid)
-        )
-            fuelType = "Oil";
-
-        else if (
-            fluidPath.equals("petrolium") || fluidPath.equals("gasoline") ||
-            ForgeRegistries.FLUIDS
-                .tags()
-                .getTag(FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", "gasoline")))
-                .contains(fluid)
-        )
-            fuelType = "Petrolium";
-        
-        boolean isAcceptable = !fuelType.isEmpty();
-        
-        if (isAcceptable)
-            self.getPersistentData().putString("FuelType", fuelType);
-
-        return isAcceptable;
+        return false;
     }
 
     @Override

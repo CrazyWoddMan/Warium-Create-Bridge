@@ -7,8 +7,10 @@ import net.mcreator.crustychunks.procedures.KeroseneFillScriptProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -23,17 +25,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
     value = {
         KeroseneFillScriptProcedure.class,
         BlockMinerReloadScriptProcedure.class
-    },
-    remap = false
+    }
 )
-public class FillScriptProcedureMixin {
+public class FillScriptProceduresMixin {
 
     @Redirect(
         method = "execute",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraftforge/registries/RegistryObject;get()Ljava/lang/Object;"
-        )
+        ),
+        remap = false
     )
     private static Object redirectBucket(
         RegistryObject<?> registryObject, 
@@ -67,5 +69,17 @@ public class FillScriptProcedureMixin {
         }
 
         return registryObject.get();
+    }
+
+    @Redirect(
+        method = "execute",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/LivingEntity;setItemInHand(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V"
+        )
+    )
+    private static void redirectSetItemInHand(LivingEntity entity, InteractionHand hand, ItemStack stack) {
+        if (entity instanceof Player player && !player.isCreative())
+            entity.setItemInHand(hand, stack);
     }
 }
