@@ -4,22 +4,22 @@ import net.mcreator.crustychunks.procedures.FuelTankInputTickProcedure;
 import net.mcreator.crustychunks.procedures.FuelTankModuleOnTickUpdateProcedure;
 import net.mcreator.crustychunks.procedures.FuelTankTickProcedure;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import crazywoddman.warium_create.util.FluidTransferContext;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(
     value = {
@@ -27,61 +27,92 @@ import crazywoddman.warium_create.util.FluidTransferContext;
         FuelTankModuleOnTickUpdateProcedure.class,
         FuelTankInputTickProcedure.class
     },
+    targets = {
+        "net.mcreator.crustychunks.procedures.FuelTankModuleOnTickUpdateProcedure$9",
+        "net.mcreator.crustychunks.procedures.FuelTankModuleOnTickUpdateProcedure$19",
+        "net.mcreator.crustychunks.procedures.FuelTankInputTickProcedure$5",
+        "net.mcreator.crustychunks.procedures.FuelTankInputTickProcedure$11",
+        "net.mcreator.crustychunks.procedures.FuelTankTickProcedure$12",
+        "net.mcreator.crustychunks.procedures.FuelTankTickProcedure$22"
+    },
     remap = false
 )
 public class FuelTanksTickProcedureMixin {
 
+    private static Fluid realFluid;
+    private static Fluid neighborFluid;
+
     @Inject(
         method = "execute",
-        at = @At("HEAD")
+        at = @At("HEAD"),
+        require = 0
     )
-    private static void captureSourceFluid(LevelAccessor world, double x, double y, double z, CallbackInfo ci) {
+    private static void captureFluid(LevelAccessor world, double x, double y, double z, CallbackInfo ci) {
         BlockEntity blockEntity = world.getBlockEntity(BlockPos.containing(x, y, z));
 
         if (blockEntity != null) {
-            blockEntity.getCapability(ForgeCapabilities.FLUID_HANDLER, null).ifPresent(capability -> {
-                FluidStack stack = capability.getFluidInTank(0);
+            String key = blockEntity.saveWithoutMetadata().getCompound("fluidTank").getString("FluidName");
 
-                if (!stack.isEmpty())
-                    FluidTransferContext.setFluid(stack.getFluid());
-            });
+            if (key != null && !key.equals("minecraft:empty"))
+                realFluid = ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse(key));
         }
     }
 
     @Inject(
-        method = "execute",
-        at = @At("RETURN")
+        method = "fillTankSimulate",
+        at = @At("HEAD"),
+        require = 0
     )
-    private static void clearSourceFluid(LevelAccessor world, double x, double y, double z, CallbackInfo ci) {
-        FluidTransferContext.clearFluid();
-    }
-
-    @ModifyConstant(
-        method = "execute",
-        constant = @Constant(stringValue = "Kerosene")
-    )
-    private static String setType(String value, LevelAccessor world, double x, double y, double z) {
-        BlockEntity blockEntity = world.getBlockEntity(BlockPos.containing(x, y, z));
+    private void captureFluidAlt(LevelAccessor world, BlockPos pos, int amount, CallbackInfoReturnable<Integer> cir) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
 
         if (blockEntity != null) {
-            CompoundTag data = blockEntity.getPersistentData();
+            String key = blockEntity.saveWithoutMetadata().getCompound("fluidTank").getString("FluidName");
 
-            if (data.contains("FuelType"))
-                return data.getString("FuelType");
+            if (key != null && !key.equals("minecraft:empty"))
+                realFluid = ForgeRegistries.FLUIDS.getValue(ResourceLocation.tryParse(key));
         }
-        return value;
+    }
+
+    @Inject(
+        method = "lambda$fillTankSimulate$0",
+        at = @At("HEAD"),
+        require = 0
+    )
+    private static void captureNeighborFluid(AtomicInteger atomicInteger, int amount, IFluidHandler capability, CallbackInfo ci) {
+        if (capability != null)
+            neighborFluid = capability.getFluidInTank(0).getFluid();
+    }
+
+    @Inject(
+        method = {
+            "lambda$execute$1",
+            "lambda$execute$3"
+        },
+        at = @At("HEAD"),
+        require = 0
+    )
+    private static void captureNeighborFluidAlt(int amount, IFluidHandler capability, CallbackInfo ci) {
+        if (capability != null)
+            neighborFluid = capability.getFluidInTank(0).getFluid();
+
     }
 
     @ModifyArg(
-        method = "lambda$execute$1", 
+        method = {
+            "lambda$execute$1",
+            "lambda$execute$3",
+            "lambda$fillTankSimulate$0"
+        },
         at = @At(
             value = "INVOKE", 
             target = "Lnet/minecraftforge/fluids/FluidStack;<init>(Lnet/minecraft/world/level/material/Fluid;I)V"
         )
     )
-    private static Fluid modifyKeroseneFluid(Fluid kerosene) {
-        Fluid realFluid = FluidTransferContext.getFluid();
-
-        return realFluid != null ? realFluid : kerosene;
+    private static Fluid modifyFluid(Fluid fluid) {
+        if (neighborFluid != null && !neighborFluid.equals(Fluids.EMPTY))
+            return neighborFluid;
+            
+        return realFluid != null ? realFluid : fluid;
     }
 }
